@@ -1,0 +1,97 @@
+22 Patch Control
+
+0
+0
+1
+dissertation.tex
+22
+7
+5
+
+dissertation.tex
+TeX:UNIX
+135376891 0 -1 2916 -1 2440 25 25 661 236 0 1 121 323 -1 -1 0 0 27 -1 -1 27 1 0 2440 -1  0 -1 0
+includes\preamble.tex
+TeX:UNIX
+1159163 0 -1 0 -1 0 25 25 637 692 0 1 41 -2103 -1 -1 0 0 37 -1 -1 37 1 0 0 -1  0 -1 0
+frontmatter\frontmatter.tex
+TeX:UNIX
+1159163 0 -1 0 -1 938 100 100 712 767 0 1 257 102 -1 -1 0 0 80 -1 -1 80 1 0 938 -1  0 -1 0
+frontmatter\acks.tex
+TeX:UNIX
+1159163 0 -1 0 -1 0 125 125 737 792 0 1 41 0 -1 -1 0 0 39 -1 -1 39 1 0 0 -1  0 -1 0
+frontmatter\abstract.tex
+TeX:UNIX
+1159163 0 -1 686 -1 690 150 150 762 817 0 1 161 119 -1 -1 0 0 1544 -1 -1 1544 1 0 690 -1  0 0 0
+intro\intro.tex
+TeX
+269496315 0 -1 0 -1 0 325 325 1013 992 0 1 41 187 -1 -1 0 0 0 -1 -1 0 1 0 0 -1  0 0 0
+related\related.tex
+TeX
+1060859 0 -1 0 -1 0 0 0 688 667 0 1 41 0 -1 -1 0 0 0 -1 -1 0 1 0 0 -1  0 0 0
+includes\thesisdefs.tex
+TeX:UNIX
+269594619 0 -1 0 -1 0 75 75 687 742 0 1 41 -969 -1 -1 0 0 16 -1 -1 16 1 0 0 -1  0 -1 0
+includes\defs.tex
+TeX:UNIX
+269594619 0 -1 0 -1 0 50 50 662 717 0 1 41 0 -1 -1 0 0 76 -1 -1 76 1 0 0 -1  0 0 0
+:\Local Users\tpejsa\Papers\16-SiggraphAsia-GazeEdit\16-SiggraphAsia-GazeEdit.prj
+DATA
+273678578 0 0 1 0 1 175 175 586 842 1 0 73 0 -1 -1 0 0 -1 -1 -1 -1 1 0 1 0  0 0 0
+refs.bib
+BibTeX
+269485042 0 0 1 0 1 0 0 612 667 0 1 41 0 -1 -1 0 0 -1 -1 -1 -1 1 0 1 0  0 -1 0
+:\Local Users\tpejsa\Papers\16-SiggraphAsia-GazeEdit\paper.tex
+TeX
+269496315 0 -1 824 -1 823 0 0 1833 845 0 1 225 153 -1 -1 0 0 16 -1 -1 16 1 0 823 -1  0 -1 0
+:\Local Users\tpejsa\Papers\16-SiggraphAsia-GazeEdit\evaluation.tex
+TeX
+269496315 0 -1 5900 -1 5208 150 150 687 979 0 1 89 289 -1 -1 0 0 3053 -1 -1 3053 1 0 5208 -1  0 -1 0
+:\Local Users\tpejsa\Papers\16-SiggraphAsia-GazeEdit\refs.bib
+BibTeX
+1049586 0 8 14 9 1 25 25 562 854 0 1 41 153 -1 -1 0 0 1 199 199 1 1 0 1 9  0 -1 0
+:\Local Users\tpejsa\Papers\16-SiggraphAsia-GazeEdit\conclusion.tex
+TeX:UNIX
+1159163 0 -1 1196 -1 1475 225 225 762 1054 0 1 481 323 -1 -1 0 0 601 -1 -1 601 1 0 1475 -1  0 0 0
+:\Local Users\tpejsa\Papers\16-SiggraphAsia-GazeEdit\futurework.tex
+TeX
+1060859 0 -1 2581 -1 442 200 200 737 1029 0 1 449 68 -1 -1 0 0 75 -1 -1 75 1 0 442 -1  0 0 0
+:\Local Users\tpejsa\Papers\16-SiggraphAsia-GazeEdit\gazeediting.tex
+TeX
+17838075 0 -1 7889 -1 7891 125 125 662 954 0 1 465 655 -1 -1 0 0 975 -1 -1 975 1 0 7891 -1  0 -1 0
+:\Local Users\tpejsa\Papers\16-SiggraphAsia-GazeEdit\gazesynthesis.tex
+TeX
+17838075 0 -1 2816 -1 0 100 100 637 929 0 1 41 0 -1 -1 0 0 5905 -1 -1 5905 1 0 0 -1  0 -1 0
+:\Local Users\tpejsa\Papers\16-SiggraphAsia-GazeEdit\gazeinference.tex
+TeX
+17838075 0 -1 17527 -1 17819 100 100 637 929 0 1 593 289 -1 -1 0 0 5936 -1 -1 5936 1 0 17819 -1  0 -1 0
+:\Local Users\tpejsa\Papers\16-SiggraphAsia-GazeEdit\relatedwork.tex
+TeX
+17838075 4 -1 1219 -1 1218 75 75 612 904 0 1 273 238 -1 -1 0 0 6774 -1 -1 6774 1 0 1218 -1  0 0 0
+:\Local Users\tpejsa\Papers\16-SiggraphAsia-GazeEdit\intro.tex
+TeX
+17838075 0 -1 5841 -1 6443 50 50 587 879 0 1 81 587 -1 -1 0 0 75 -1 -1 75 1 0 6443 -1  0 -1 0
+:\Local Users\tpejsa\Papers\16-SiggraphAsia-GazeEdit\abstracts.tex
+TeX
+1060859 1 -1 1182 -1 29 275 275 887 942 0 1 41 17 -1 -1 0 0 27 -1 -1 27 1 0 29 -1  0 0 0
+
+*dissertation.tex
+>
+*includes/preamble
+*includes/defs
+*includes/thesisdefs
+*frontmatter/frontmatter
+>
+*frontmatter/acks
+*frontmatter/abstract
+<
+*intro/intro
+*related/related
+*gazemodel/gazemodel
+*conversationalrolegaze/conversationalrolegaze
+*stylizedgaze/stylizedgaze
+*gazeauthoring/gazeauthoring
+*discussion/discussion
+*backmatter/colophon
+*refs
+<
