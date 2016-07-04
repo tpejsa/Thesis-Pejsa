@@ -1,12 +1,42 @@
+Character animation---the process of bringing drawn, sculpted, or computer-generated characters to life---forms the backbone of some of the most popular contemporary art forms, such as animated films and video games. With their proven ability to engage and entertain people irrespective of age and culture, animated characters hold potential that extends beyond storytelling media: the last two decades have witnessed a growing research and commercial interest in embodied conversational agents~\cite{original ECA paper}, animated characters that can converse with users in real time and serve in educational, marketing, and socially assistive roles. Across all these application domains, one maxim pertaining to character animation holds true: to captivate and engage the viewer, animated characters need to be \emph{believable}. Their visible behaviors must be comprised of physically and biologically plausible movements, and they must clearly convey the characters' intentions, emotions, and personalities. Believable character animation is synonymous with plausible, communicatively effective behavior, and a key component of such behavior is \emph{gaze}. This body of research contributes several new techniques for creating communicatively effective gaze behaviors for computer-generated, animated characters.
+
+The importance of gaze in human communication is well-documented. By observing the gaze of others, people can infer the focus of their attention and understand high-level meaning behind their actions---e.g., people ground linguistic references to objects by looking at them~\cite{Hanna and Brennan, 2007, Preissler and Carey, 2005}. A person can look at objects and information in the environment and the viewer's attention will be automatically redirected toward the same objects through the mechanism of joint attention~\cite{D’Entremont et al., 2007}. Moreover, spatial and temporal distribution of gaze among different foci implicitly conveys their importance to the current activity---e.g., participants in a multiparty interaction can use their gaze and body orientation to involve a newcomer as an equal partner, or relegate them to a bystander role~\cite{sth on footing in human conversations}. Animated characters with appropriately designed gaze behaviors can achieve the same effects.
+
+The communicative importance of gaze is well-known to professional animators, who expend much effort into animating believable gaze movements that capture the audience’s attention and direct it toward the most important thing on the screen. In the pioneering years of animation, an oft-repeated rule of thumb at Walt Disney Animation Studios was:
+
+
 Why is gaze important? What can it do?
-Attention & its distribution
-Clarity
-Intent
-Spatial organization of the interaction, conversational roles
+What does gaze do with attention: (1) signals the character's attention, (2) redirects the viewer's attention direction, (3) signals spatial and temporal distribution of attention
+Attention as a fundamental mechanism for high-level processes (intent, footing)
 
 Why is gaze hard?
 
 How gaze is animated/synthesized in practice (and what the problems are with the current approaches)
+Gaze needs to be plausible and communicatively effective
+To get both, we need (manual) animator effort and expertise
+Manual authoring  is costly - not just because expertise is hard to come by, but also because it does not scale
+
+Computational synthesis of gaze is hardly a novel proposition
+Shortcomings of previous techniques:
+- Focus on specific types of gaze movements (saccades, smooth pursuit)
+- Lack of consideration for full-body motion
+- Lack of consideration for variation in character design
+- Focus on automation over control and authoring
+- Lack of evaluation of effectiveness
+We propose a broadly applicable model of gaze behavior called directed gaze - (define it)
+We introduce techniques for synthesis of plausible, effective directed gaze movements
+Novelties:
+- Support for upper-body and whole-body movements as well - many behaviors can be described or approximated by directed gaze; not just gaze shifts, gaze aversions, saccades, fixations... but also body orientation shifts
+- We consider combining gaze with existing full-body motion (though that's partially a necessity since our gaze shifts can also animate the body)
+- We introduce retargeting to different character designs
+- We introduce a coherent gaze authoring framework
+- Effectiveness extensively evaluated in studies with human participants
+
+We introduce techniques for 
+
+(1) For plausibility, we need natural kinematics
+(2) For effectiveness, we need control (and evaluation in user studies)
+
 
 Thesis of this dissertation
 
