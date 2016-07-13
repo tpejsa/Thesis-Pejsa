@@ -1,5 +1,0 @@
-\contentsline {chapter}{Contents}{ii}{section*.4}
-\contentsline {chapter}{List of Tables}{iii}{section*.6}
-\contentsline {chapter}{List of Figures}{iv}{section*.8}
-\contentsline {chapter}{Abstract}{v}{chapter*.9}
-\contentsline {chapter}{Colophon}{4}{chapter*.10}

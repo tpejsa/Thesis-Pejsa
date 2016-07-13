@@ -1,0 +1,73 @@
+The previous study showed that by manipulating a property of eye-head coordination in the agent's gaze shifts---the head alignment parameter---we can control how participants redirect their attention and produce positive effects in their interactions with the agent. The goal of the next study was to show that interaction outcomes can be similarly modified by manipulating an analogous property of upper body coordination in gaze---specifically, the trunk alignment parameter. In the third study, a virtual agent gazes at a series of paintings. We use the trunk alignment parameter to control how much the agent's upper body participates in these gaze shifts (Figure~\ref{fig:Study3Conditions}). Our expectation was that when the agent turned its upper body more towards a painting, this would produce a greater shift in attention in a participant than merely turning the agent's eyes and head, so the participants would attribute to the agent a greater interest in that painting.
+
+\subsection{Hypotheses}
+
+Our hypotheses for the study were the following:
+
+\emph{Hypothesis 1} -- Participants will perceive the agent as more interested in an object when the agent gazes at the object than when it ignores the object. This hypothesis is strongly supported in literature, as the role of eye gaze in attention cueing and establishing joint attention has been extensively studied \cite{frischen2007gaze}.
+
+\emph{Hypothesis 2} -- Participants will perceive the agent as more interested in an object when the agent rotates its upper body towards the object, rather than rotating just its eyes and head.
+
+\emph{Hypothesis 3} -- Participants will perceive the agent as more interested in an object when the agent rotates its upper body towards the object with high trunk alignment rather than with minimal trunk alignment.
+
+The latter two hypotheses have support in prior work in the social sciences, which suggests a link between body orientation and human attention cueing mechanisms \cite{hietanen2002social,pomianowska2011socialcues,kendon1973visible,schegloff1998bodytorque}. On that basis, we believe that increased amount of upper body reorientation in gaze shifts suggests a greater shift in attention.
+
+\subsection{Participants}
+
+We recruited 15 participants (8 males, 7 females) from a campus population, using fliers, online job postings, and in-person recruitment. The study took 10 minutes and participants were paid \$2 for their participation.
+
+\subsection{Study Design}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.65\textwidth,page=13]{Figures/tiis14-pejsa.pdf}
+\caption{Experimental conditions in Study 3.}
+\label{fig:Study3Conditions}
+\end{figure*}
+
+The study followed a within-participants design with a single factor with four levels. Experimental conditions were as follows:
+
+\begin{enumerate}
+\item \emph{No gaze} -- The agent does not look towards the painting.
+\item \emph{Eye-head} -- The agent gazes at the painting by turning its eyes and head towards the painting, without engaging the trunk.
+\item \emph{Minimally aligned upper body} -- The agent also turns its trunk towards the painting by a minimal amount (model parameter $\alpha_T$ set to 0).
+\item \emph{Highly aligned upper body} -- The agent turns its trunk towards the painting by a large amount (model parameter $\alpha_T$ set to 0.3).
+\end{enumerate}
+
+Figure~\ref{fig:Study3Conditions} depicts each of the four conditions.
+
+The participant was asked to watch the agent perform sequences of gaze shifts towards four virtual paintings placed in the scene. The four paintings were static and fully visible to the participant at all times. For each set of paintings, the agent performed three gaze shifts---eye-head gaze, gaze with minimal upper body alignment, and gaze with high upper body alignment. In each case, the agent gazed at a different painting. In any set of paintings, the agent would gaze at three out of the four paintings \emph{once} and would never gaze at the fourth painting. The placement of paintings and assignment of gaze conditions were randomized. After watching the gaze shifts, the participant was asked to rate the agent's interest in each painting. Figure~\ref{fig:Study3Task}, left shows the task interface, while the figure on the right shows the physical setup.
+
+\begin{figure*}
+\centering
+\includegraphics[width=0.95\textwidth,page=14]{Figures/tiis14-pejsa.pdf}
+\caption{Experimental task in Study 3. Left: Task interface. Right: An experimenter demonstrating the task.}
+\label{fig:Study3Task}
+\end{figure*}
+
+The task was implemented using the virtual agent framework we developed for Study 2 (Section~\ref{sec:Study2Implementation}).
+
+\subsection{Procedure}
+
+After recruitment, each participant read and signed a consent form. They then performed eight trials of the experimental task. The first three trials were used to acclimate the participant to the task, and data from these trials were not used. At the end of each trial, the participant rated the agent's interest in each painting using rating scales that appeared under each painting on the screen (Figure~\ref{fig:Study3Task}, left). After submitting their ratings, a new set of paintings and gaze shifts were presented to the participant. Task duration was approximately five minutes. At the end of the task, each participant filled out a demographic questionnaire.
+
+\subsection{Measures}
+
+The study used one subjective measure---\emph{perceived interest}---which was measured using a single seven-point rating scale item (1 = ``Uninterested,'' 7 = ``Very Interested'').
+
+\subsection{Results}
+
+\begin{figure*}[b]
+\centering
+\includegraphics[width=0.5\textwidth,page=15]{Figures/tiis14-pejsa.pdf}
+\caption{Results for perceived interest ratings for each type of gaze shift. Results for gaze shifts with upper body movement are shown in red.}
+\label{fig:Study3Results}
+\end{figure*}
+
+Figure~\ref{fig:Study3Results} shows the study results. Mean interest ratings were 1.25 ($\mathrm{SD} = 0.19$) in the \emph{no gaze} condition, 3.67 ($\mathrm{SD} = 0.19$) in the \emph{eye-head} condition, 4.20 ($\mathrm{SD} = 0.19$) in the \emph{minimally aligned upper body} condition, and 5.00 ($\mathrm{SD} = 0.19$) in the \emph{highly aligned upper body} condition. One-way within-participants ANOVA found significant differences between means, $F(3, 282) = 195.03, p < .0001$.
+
+A priori comparisons showed that the agent was perceived as significantly more interested in the \emph{eye-head} condition than in the \emph{no gaze} condition, $F(1, 282) = 218.12, p < .0001$, providing support for the first hypothesis. Furthermore, the agent also was perceived as significantly more interested in the \emph{minimally aligned upper body} condition than in the \emph{eye-head} condition, $F(1, 282) = 10.65, p = .0012$, leading us to accept the second hypothesis. Finally, the agent was perceived as significantly more interested in the \emph{highly aligned upper body} condition than in the \emph{minimally aligned upper body} condition, $F(1, 282) = 23.97, p < .0001$, which supports the third hypothesis.
+
+\subsection{Discussion}
+
+The purpose of this study was to show that changes in upper body orientation in gaze shifts produced by our gaze model strengthened the shift in attention signaled by the gaze shifts and led to increases in the perception of the agent's interest in objects in the environment. The results of the study support all of our hypotheses. As expected, the agent was perceived as being more interested in an object in a gaze condition than a no gaze condition; moreover, engagement of the upper body during gaze shifts communicated interest more strongly than just eye and head movements. Trunk rotation amplitude in the \emph{minimally aligned upper body} condition never exceeded 6$^{\circ}$, yet even such a small amount of movement yielded a significant increase in the perceived interest score, suggesting that humans are highly sensitive to differences in body orientation. High trunk alignment yielded changes in trunk orientation in excess of 26$^{\circ}$ and led to a further increase in interest scores, suggesting a link between the agent's upper body orientation, controlled using the trunk alignment parameter, and the attention signalling properties of gaze. 
