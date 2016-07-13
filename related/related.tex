@@ -30,8 +30,30 @@ Shifts in attention direction are accomplished not only through movements of the
 
 \subsection{Gaze Motion Synthesis}
 
+Gaze behaviors for animated characters are synthesized using computational models of human gaze. I distinguish between low-level and high-level models. \emph{Low-level} gaze models synthesize atomic gaze movements (such as gaze shifts) by simulating the kinematics of real human gaze, whereas \emph{high-level} models synthesize complex gaze behaviors (composed of many low-level movements) that fit the current scenario. The gaze shift synthesis model presented in Chapter~\ref{cha:GazeShiftModel} is an example of a low-level model, whereas the gaze inference model in Chapter~\ref{cha:GazeAuthoring} can be classed as high-level.
 
+In the remainder of the section, I give an overview of gaze synthesis models for animated characters and embodied conversational agents. I focus on models that are most relevant to the current work---a more thorough survey is provided by~\citet{ruhland2015gazereview}.
 
+\subsubsection{Low-level Gaze Models}
+
+Low-level gaze models synthesize atomic movements that comprise the overall gaze behavior. These movements are:
+
+\begin{enumerate}
+\item \textbf{Saccades} -- Saccades are rapid eyeball movements toward targets of interest. Saccades are what people most commonly associate with gaze.
+\item \textbf{Vestibulo-ocular reflex (VOR)} -- The VOR stabilizes the eyes during head motion, ensuring they remain fixated on the target and the image remains stable.
+\item \textbf{Vergence} -- In almost all gaze movements, both eyes move in the same direction. Vergence is the exception---when the eyes focus on an object that lies along the visual midline, they need to move in the opposite direction.
+\item \textbf{Smooth pursuit} -- Smooth pursuit executes a series of saccades to visually track a slow-moving object or read a line text, while ensuring the image remains stable.
+\item \textbf{Gaze shifts} -- Gaze shifts are coordinated, rotational movements of the eyes, head, and body toward targets of interest.
+\item \textbf{Eye blinks} -- Eye blinks are rapid eyelid-closing and opening movements. They typically occur spontaneously and provide lubrication to the eye, though they also occur reflexively (e.g., to shield the eye from injury) and voluntarily (as a form of nonverbal communication, e.g., winks).
+\end{enumerate}
+
+Low-level gaze models generally focus on simulating saccades and gaze shifts. Since saccades can be thought of as gaze shifts comprised only of eye movements, models for the latter implicitly support the former. The VOR is fairly trivial to implement, so almost all gaze models incorporate it. Likewise, all models implicitly simulate vergence, because they compute each eye's orientation separately. Smooth pursuit is a relatively infrequent movement, so it is rarely simulated---one notable exception is the smooth pursuit implementation by~\citet{yeo2012eyecatch}.
+
+TODO: explain the idea of parametric control
+
+Gaze shift and saccade models can be classified into data-driven models, which use recorded, annotated, or motion-captured data to synthesize novel gaze behaviors~\cite{heck2007automated,lance2010expressive,lee2002eyes,deng2005automated,le2012live}, and procedural models, which synthesize gaze movements using equations that describe their kinematics~\cite{peters2010animating,thiebaux2009realtime}. Data-driven models typically produce more natural gaze motions, while procedural models offer a greater degree of parametric control. Saccadic gaze models are generally data-driven; they use statistical~\cite{le2012live,lee2002eyes} or sampling-based~\cite{deng2005automated} models of gaze data to synthesize saccadic sequences given inputs such as head motion and speech. Among gaze shift models, the Expressive Gaze Model (EGM)~\cite{lance2010expressive} is an example of a hybrid model, which produces procedurally generated, neurophysiologically-based eye movements in conjunction with motion-captured head and torso movements. It also supports parametric control over the head movements. The model by~\citet{peters2010animating} is procedural, eye-head model that supports parametric control via a head propensity parameter.
+
+The gaze shift model presented in the current work
 
 
 % \subsection{Gaze Motion Synthesis}
@@ -42,6 +64,7 @@ Shifts in attention direction are accomplished not only through movements of the
 Don't forget:
 - Badler - Where To Look, Eyes Alive
 - When talking about eye-head coordination, cite andrist2012designing
+- Eye blinks
 - Talk about gaze in VR?
 
 %\subsection{Gaze Inference}
