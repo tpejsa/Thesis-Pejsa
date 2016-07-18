@@ -1,0 +1,50 @@
+\begin{figure*}
+\centering
+\includegraphics[width=1\textwidth]{stylizedgaze/Figures/TestCases-small.pdf}
+\caption{The characters used in our evaluation. From left to right: RealisticFemale1, RealisticFemale2, SemiStylizedFemale, StylizedFemale, StylizedMale, EmotiGuy, Jack, Donkey, Fish, and NastyMonster.}
+\label{fig:TestCases}
+\end{figure*}
+
+To evaluate the effectiveness of stylized gaze methods in reducing visual artifacts, we conducted measurements of artifact prevalence on a variety of characters using a set of objective metrics. These metrics reflect the amount of observable artifacts over the course of a gaze shift. Because each artifact is the product of a particular combination of the pose and kinematics of the eyes and the head, whether or not the artifact is present at a particular frame and its severity can be objectively quantified. Each metric computes the presence of an artifact at each frame and sums them over all the frames of the gaze shift to calculate the ``amount'' in which the artifact appears. Severity is determined by weighing the amount of an artifact by the cosine fall-off of the viewing angle, $\phi$ (i.e., the angle between the view direction and the character's gaze direction), thus giving less weight to frames where the character's eyes are less visible. The artifact amount is also weighed by the blink height at each frame to account for eye blinks that partially or fully conceal the artifacts. The aggregated amounts are then normalized by the duration of the gaze shift, providing us with quantities that we can compare across different characters and gaze shift configurations. Our metrics include cross-eyedness amount, $\tau_{CE}$, OMR-block amount, $\tau_{OMR}$, eye retraction and divergence amount, $\tau_{ERD}$, and stuck eye amount, $\tau_{SE}$.
+% NOTE: removed redundant explanations of metrics -- Tomislav
+
+% See http://www.inf.ethz.ch/personal/markusp/teaching/guides/guide-tables.pdf for info on making nice tables
+\begin{table}
+\footnotesize
+\centering
+\caption{Artifact reduction evaluation results. Each cell contains the aggregate score for a particular metric on a particular character with the original motion or motion adapted using our methods.}
+\vspace{4pt}
+\begin{tabular}{@{}llcccc@{}}\toprule
+Character & Model & $\tau_{CE}$ & $\tau_{OMR}$ & $\tau_{ERD}$ & $\tau_{SE}$ \\
+\midrule
+RealisticFemale1 & \textbf{Original} & 0.30 & 0.24 & 0.20 & 0.03 \\\hdashline
+RealisticFemale2 & \textbf{Original} & 0.31 & 0.22 & 0.20 & 0.03 \\\hdashline
+\multirow{2}{*}{SemiStylizedFemale} & \textbf{Original} & 0.31 & 0.23 & 0.18 & 0.03 \\
+& \textbf{Adapted} & 0.07 & 0.10 & 0.10 & 0.02 \\\hdashline
+\multirow{2}{*}{StylizedFemale} & \textbf{Original} & 0.40 & 0.25 & 0.21 & 0.05 \\
+& \textbf{Adapted} & 0.12 & 0.10 & 0.10 & 0.02 \\\hdashline
+\multirow{2}{*}{StylizedMale} & \textbf{Original} & 0.32 & 0.22 & 0.17 & 0.03 \\
+& \textbf{Adapted} & 0.09 & 0.10 & 0.10 & 0.03 \\\hdashline
+\multirow{2}{*}{EmotiGuy} & \textbf{Original} & 0.27 & 0.33 & 0.20 & 0.07 \\
+& \textbf{Adapted} & 0.06 & 0.12 & 0.13 & 0.03 \\\hdashline
+\multirow{2}{*}{Jack} & \textbf{Original} & 0.06 & 0.46 & 0.11 & 0.05 \\
+& \textbf{Adapted} & 0.07 & 0.16 & 0.07 & 0.06 \\\hdashline
+\multirow{2}{*}{Donkey} & \textbf{Original} & 0.18 & 0.34 & 0.22 & 0.10 \\
+& \textbf{Adapted} & 0.04 & 0.10 & 0.15 & 0.03 \\\hdashline
+\multirow{2}{*}{Fish} & \textbf{Original} & 0.54 & 0.30 & 0.26 & 0.08 \\
+& \textbf{Adapted} & 0.16 & 0.10 & 0.14 & 0.03 \\\hdashline
+\multirow{2}{*}{NastyMonster} & \textbf{Original} & 0 & 0.20 & 0.29 & 0 \\
+& \textbf{Adapted} & 0 & 0.09 & 0.18 & 0 \\
+\bottomrule
+\end{tabular}
+\label{tab:EvalResults}
+\end{table}
+
+For our test cases, we generated $138$ random gaze shifts and applied them to ten different characters, including two with realistic, humanlike proportions (Figure~\ref{fig:TestCases}). The test set included an equal number of gaze shifts with full and minimal head alignment. For each character, we aggregated the measurements for all the gaze shifts with the same head alignment. The results show a reduction in artifact prevalence in almost all test cases as summarized in Table~\ref{tab:EvalResults} and below:
+
+\begin{itemize}
+\item Cross-eyedness, $\tau_{CE}$, in characters with human proportions has an average value of $0.30$ and goes up to $0.54$ in characters with larger inter-eye distances. These levels of cross-eyedness cause unacceptable visual artifacts in stylized characters with large eyes, which are significantly reduced by our model.
+\item $\tau_{OMR}$ is $0.22$--$0.24$ for realistic characters and can be as high as $0.46$ in stylized characters with very narrow OMR such as Jack. Our model reduces it by $30$--$60$\%, bringing it to about half of normal human levels and achieving a slower movement toward OMR in larger eyes.
+\item $\tau_{ERD}$ is approximately $0.20$, $0.30$, and $0.10$ in realistic characters, characters with wide (e.g., NastyMonster) or highly asymmetric OMR (e.g., Fish), and characters with low OMR (e.g., Jack), respectively. Our model succeeds in reducing these values by $30$--$50$\%.
+\item Even characters with human proportions exhibit a small amount of stuck eye, $\tau_{SE}$, which we believe is too small to notice. With characters with an asymmetric OMR (e.g., EmotiGuy, Jack, Donkey, Fish), $\tau_{SE}$ can be as high as $0.10$. Our model reduces it to the levels seen in human characters. An exception is the Jack character with a very narrow OMR, which offers little flexibility in the movement.
+\end{itemize}

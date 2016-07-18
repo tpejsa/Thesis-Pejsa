@@ -4,13 +4,13 @@ A second evaluation study was conducted to show that attention-signalling proper
 
 Our hypotheses for the study were the following:
 
-\emph{Hypothesis 1} -- The character will be perceived as more interested in an object when it gazes at the object than when it ignores the object. This hypothesis is strongly supported in literature, as the role of eye gaze in attention cueing and establishing joint attention has been extensively studied~\cite{frischen2007gaze}.
+\begin{enumerate}
+\item The character will be perceived as more interested in an object when it gazes at the object than when it ignores the object.
+\item The character will be perceived as more interested in an object when it shifts its upper body toward the object, rather than rotating just its eyes and head.
+\item The character will be perceived as more interested in an object when it shifts its upper body toward the object with high torso alignment rather than with minimal torso alignment.
+\end{enumerate}
 
-\emph{Hypothesis 2} -- The character will be perceived as more interested in an object when it rotates its upper body toward the object, rather than rotating just its eyes and head.
-
-\emph{Hypothesis 3} -- The character will be perceived as more interested in an object when itr rotates its upper body toward the object with high torso alignment rather than with minimal torso alignment.
-
-The latter two hypotheses have support in prior work in the social sciences, which suggests a link between body orientation and human attention cueing mechanisms \cite{hietanen2002social,pomianowska2011socialcues,kendon1990conducting,schegloff1998bodytorque}. On that basis, we hypothesize that increased amount of upper body reorientation in gaze shifts suggests a greater shift in attention.
+The first hypothesis is strongly supported in literature, as the role of eye gaze in attention cueing and establishing joint attention has been extensively studied~\citep{frischen2007gaze}. The latter two hypotheses have support in prior work in the social sciences, which suggests a link between body orientation and human attention cueing mechanisms \citep{hietanen2002social,pomianowska2011socialcues,kendon1990conducting,schegloff1998bodytorque}. On that basis, we hypothesize that increased amount of upper body reorientation in gaze shifts suggests a greater shift in attention.
 
 \subsection{Participants}
 
@@ -18,9 +18,9 @@ We recruited 15 participants (8 males, 7 females) from a campus population, usin
 
 \subsection{Study Design}
 
-\begin{figure*}[t]
+\begin{figure*}
 \centering
-\includegraphics[width=0.65\textwidth,page=13]{Figures/tiis14-pejsa.pdf}
+\includegraphics[width=0.75\textwidth,page=13]{gazemodel/Figures/tiis14-pejsa.pdf}
 \caption{Experimental conditions in Study 3.}
 \label{fig:Study3Conditions}
 \end{figure*}
@@ -40,12 +40,12 @@ The participant was asked to watch the character perform sequences of gaze shift
 
 \begin{figure*}
 \centering
-\includegraphics[width=0.95\textwidth,page=14]{gazemodel/Figures/tiis14-pejsa.pdf}
+\includegraphics[width=1\textwidth,page=14]{gazemodel/Figures/tiis14-pejsa.pdf}
 \caption{Experimental task in Study 3. Left: Task interface. Right: An experimenter demonstrating the task.}
 \label{fig:Study3Task}
 \end{figure*}
 
-The task was built using Unity game engine~\cite{unity3d}. The gaze shift model and task logic were implemented in C# scripts.
+The task was built using Unity game engine~\citep{unity3d}. The gaze shift model and task logic were implemented in C\# scripts.
 
 \subsection{Procedure}
 
@@ -57,9 +57,9 @@ The study used one subjective measure---\emph{perceived interest}---which was me
 
 \subsection{Results}
 
-\begin{figure*}[b]
+\begin{figure*}
 \centering
-\includegraphics[width=0.5\textwidth,page=15]{gazemodel/Figures/tiis14-pejsa.pdf}
+\includegraphics[width=0.65\textwidth,page=15]{gazemodel/Figures/tiis14-pejsa.pdf}
 \caption{Results for perceived interest ratings for each type of gaze shift. Results for gaze shifts with upper body movement are shown in red.}
 \label{fig:Study3Results}
 \end{figure*}
@@ -70,4 +70,4 @@ A priori comparisons showed that the character was perceived as significantly mo
 
 \subsection{Discussion}
 
-The conducted study shows that changes in upper body orientation in gaze shifts produced by our gaze shift model signal a stronger shift in attention toward objects and information in the environment. Torso rotation amplitude in the \emph{minimally aligned upper body} condition never exceeded 6$^{\circ}$, yet even such a small amount of movement yielded a significant increase in the perceived interest score, suggesting that humans are highly sensitive to differences in body orientation. High torso alignment yielded changes in torso orientation in excess of 26$^{\circ}$ and led to a further increase in interest scores, suggesting a correlation between the character's upper body orientation, controlled using the torso alignment parameter, and the strength of the associated attention cue.
+The conducted study shows that changes in upper body orientation in gaze shifts produced by our gaze shift model signal a stronger shift in attention toward objects and information in the environment. Torso rotation amplitude in the \emph{minimally aligned upper body} condition never exceeded 6$^{\circ}$, yet even such a small amount of movement yielded a significant increase in the perceived interest score, suggesting that humans are highly sensitive to differences in body orientation. High torso alignment yielded changes in torso orientation in excess of 26$^{\circ}$ and led to a further increase in interest scores, suggesting a correlation between the character's upper body orientation, controlled using the torso alignment parameter, and the strength of the associated attention cue. 
