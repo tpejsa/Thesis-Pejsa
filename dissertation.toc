@@ -52,26 +52,60 @@
 \contentsline {section}{\numberline {5.1}Introduction}{50}{section.5.1}
 \contentsline {section}{\numberline {5.2}Artifacts on Stylized Characters}{52}{section.5.2}
 \contentsline {section}{\numberline {5.3}Gaze Adaptation}{55}{section.5.3}
-\contentsline {subsection}{Target Pose Adaptation}{55}{section*.39}
+\contentsline {subsection}{Target Pose Adaptation}{56}{section*.39}
 \contentsline {subsubsection}{Cross-eyedness Removal}{56}{section*.40}
-\contentsline {subsubsection}{Eye Divergence}{57}{section*.41}
+\contentsline {subsubsection}{Eye Divergence}{58}{section*.41}
 \contentsline {subsection}{Gaze Kinematics Adaptation}{59}{section*.42}
 \contentsline {subsection}{Gaze-evoked Eye Blinks}{61}{section*.43}
 \contentsline {section}{\numberline {5.4}Performative Gaze}{62}{section.5.4}
 \contentsline {section}{\numberline {5.5}Evaluation: Artifact Reduction}{64}{section.5.5}
-\contentsline {section}{\numberline {5.6}Evaluation: Communicative Accuracy}{66}{section.5.6}
+\contentsline {section}{\numberline {5.6}Evaluation: Communicative Accuracy}{67}{section.5.6}
 \contentsline {subsection}{Study Design}{67}{section*.44}
-\contentsline {subsection}{Task}{67}{section*.45}
+\contentsline {subsection}{Task}{68}{section*.45}
 \contentsline {subsection}{Procedure}{68}{section*.46}
-\contentsline {subsection}{Measures}{68}{section*.47}
+\contentsline {subsection}{Measures}{69}{section*.47}
 \contentsline {subsection}{Results}{69}{section*.48}
-\contentsline {section}{\numberline {5.7}Discussion}{70}{section.5.7}
-\contentsline {chapter}{\chapternumberline {6}Gaze Animation Authoring}{72}{chapter.6}
-\contentsline {section}{\numberline {6.1}Introduction}{72}{section.6.1}
-\contentsline {section}{\numberline {6.2}Gaze Inference}{72}{section.6.2}
-\contentsline {section}{\numberline {6.3}Gaze Synthesis}{72}{section.6.3}
-\contentsline {section}{\numberline {6.4}Gaze Editing}{72}{section.6.4}
-\contentsline {section}{\numberline {6.5}Evaluation}{72}{section.6.5}
-\contentsline {section}{\numberline {6.6}Discussion}{72}{section.6.6}
-\contentsline {chapter}{\chapternumberline {7}Discussion}{73}{chapter.7}
-\contentsline {chapter}{References}{74}{section*.50}
+\contentsline {section}{\numberline {5.7}Discussion}{71}{section.5.7}
+\contentsline {chapter}{\chapternumberline {6}Gaze Animation Authoring}{73}{chapter.6}
+\contentsline {section}{\numberline {6.1}Introduction}{73}{section.6.1}
+\contentsline {subsection}{Approach Overview}{74}{section*.49}
+\contentsline {section}{\numberline {6.2}Gaze Inference}{75}{section.6.2}
+\contentsline {subsection}{Gaze Instance Inference}{75}{section*.50}
+\contentsline {subsubsection}{Gaze Event Discovery}{76}{section*.51}
+\contentsline {subsubsection}{Motion Interval Classification}{78}{section*.52}
+\contentsline {subsubsection}{Gaze Instance Generation}{79}{section*.53}
+\contentsline {subsection}{Gaze Target Inference}{80}{section*.54}
+\contentsline {subsubsection}{Directional term}{82}{section*.55}
+\contentsline {subsubsection}{Importance term}{83}{section*.56}
+\contentsline {subsubsection}{Hand contact term}{83}{section*.57}
+\contentsline {subsubsection}{Implementation}{84}{section*.58}
+\contentsline {subsection}{Computing Alignment Parameters}{84}{section*.59}
+\contentsline {subsection}{Evaluation}{85}{section*.60}
+\contentsline {subsubsection}{Data Collection}{85}{section*.61}
+\contentsline {subsubsection}{Results: Gaze Instances}{86}{section*.62}
+\contentsline {subsubsection}{Results: Gaze Targets}{87}{section*.63}
+\contentsline {section}{\numberline {6.3}Gaze Synthesis}{88}{section.6.3}
+\contentsline {subsection}{Synthesis of Gaze Kinematics}{88}{section*.64}
+\contentsline {subsection}{Gaze Motion Blending}{89}{section*.65}
+\contentsline {section}{\numberline {6.4}Gaze Editing}{91}{section.6.4}
+\contentsline {subsection}{Editing Operations}{91}{section*.66}
+\contentsline {subsection}{Editing Tool}{92}{section*.67}
+\contentsline {subsection}{Results}{94}{section*.68}
+\contentsline {section}{\numberline {6.5}Evaluation}{95}{section.6.5}
+\contentsline {subsection}{Authoring Effort}{96}{section*.69}
+\contentsline {subsection}{Animation Quality}{97}{section*.70}
+\contentsline {subsubsection}{Hypotheses}{97}{section*.71}
+\contentsline {subsubsection}{Design}{98}{section*.72}
+\contentsline {subsubsection}{Stimuli}{98}{section*.73}
+\contentsline {subsubsection}{Measures}{98}{section*.74}
+\contentsline {subsubsection}{Participants}{99}{section*.75}
+\contentsline {subsubsection}{Results}{99}{section*.76}
+\contentsline {subsection}{Editing Effectiveness}{101}{section*.77}
+\contentsline {subsubsection}{Design}{102}{section*.78}
+\contentsline {subsubsection}{Stimuli}{102}{section*.79}
+\contentsline {subsubsection}{Measures}{103}{section*.80}
+\contentsline {subsubsection}{Participants}{103}{section*.81}
+\contentsline {subsubsection}{Results}{103}{section*.82}
+\contentsline {section}{\numberline {6.6}Discussion}{105}{section.6.6}
+\contentsline {chapter}{\chapternumberline {7}Discussion}{108}{chapter.7}
+\contentsline {chapter}{References}{109}{section*.84}
