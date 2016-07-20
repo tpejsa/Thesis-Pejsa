@@ -9,20 +9,20 @@ To synthesize the pose at a given frame $f$, at which there is an active gaze in
 Since the key kinematic parameters (velocities and latencies) are computed from amplitude, kinematics of the gaze shift very much depend on the target position relative to the character. When adding a gaze shift to a character that is moving relative to the target (e.g., walking and turning), we must compute these parameters based on the target's projected position at the \emph{end} of the gaze shift, otherwise we may get an implausible fast or slow gaze shift. Our solution is to supply the gaze model with an additional parameter $\Delta \mathbf{p}_T$---the \emph{relative target translation} due to root movement over the course of the gaze shift. We apply this translational offset to the target position: $\mathbf{p}_T' + \mathbf{p}_T + \Delta \mathbf{p}_T$. The adjusted target position $\mathbf{p}_T'$ is used for computing the initial kinematic parameters---amplitudes, peak velocities, and latencies---resulting in more plausible kinematics.
 
 Computing $\Delta \mathbf{p}_T$ is straightforward. Let $\mathbf{p}_{R,0}$ and $\mathbf{q}_{R,0}$ be the world-space position and orientation of the character's root at the start of the gaze shift (frame $f_s$). Let $\mathbf{p}_{R,1}$ and $\mathbf{q}_{R,1}$ be the root position and orientation at the end of the gaze shift (frame $f_x$). Finally, let $\mathbf{p}_T$ be the gaze target position. Relative target translation is then:
-
+%
 \begin{align} \label{eq:GazeShiftTargetTrans}
 \Delta \mathbf{p}_T = \mathbf{p}_{R,0} + (\mathbf{q}_{R,1}^{-1} \mathbf{q}_{R,0}) (\mathbf{p}_T - \mathbf{p}_{R,1}) - \mathbf{p}_T
 \end{align}
-
+%
 \subsection{Gaze Motion Blending}
 \label{sec:GazeMotionBlending}
 
 The gaze shift model outputs at each frame $f$ a head and torso pose as a set of joint orientations, $\mathbf{q}_j^f$, where $j$ is the joint index. We blend this pose with the character's current pose (encoded in the original motion), $\mathbf{q}_{0,j}^f$. Thus we get the blended pose:
-
+%
 \begin{align} \label{eq:GazeShiftPoseBlend}
 \mathbf{q}_{\mathrm{blend},j}^f = \mathop{slerp}(\mathbf{q}_{0,j}^f, \mathbf{q}_j^f, w^f)
 \end{align}
-
+%
 To compute the blend weight, $w^f$, we devised a scheme that achieves two properties: (1) it tries to preserve as much of the original body motion as possible, and (2) it ensures smooth transitions from unconstrained gaze to constrained gaze and vice versa. Therefore, the blend weight has two components: $w^f = w_1^f w_2^f$.
 
 We compute the first component using the cosine of the angle between the original and gaze orientation at the current frame: $w_1^f = 1 - \cos \phi^f$, where $\phi^f = \angle(\mathbf{q}_{0,j}^f, \mathbf{q}_j^f)$. We clamp this value to 1 for $\phi^f > 90 \deg$. If a gaze instance is unedited, then the output gaze direction from the model will be the same as in the original motion, the blend weight will be close to 0, and the final pose will be identical the original pose. On the other hand, if we change the gaze target for the instance, the gaze model output will diverge from the original motion and its influence on the final pose will increase, allowing the character's gaze to reach the new target. This scheme allows us to automatically control the trade-off between using procedurally synthesis and the more expressive original motion data. Alternatively, we also allow the animator to manually fix or keyframe the value of $w_1$ and thus exercise more control over the result.

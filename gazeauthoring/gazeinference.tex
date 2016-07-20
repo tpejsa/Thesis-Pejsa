@@ -17,17 +17,17 @@ Human gaze shifts follow a particular kinematic pattern (Section~\ref{sec:GazeSh
 \subsubsection{Gaze Event Discovery}
 
 We discover gaze events by analyzing joint accelerations in the motion (Figure~\ref{fig:GazeInstanceInference}). Let $a_j(f)$ be the angular acceleration signal of joint $j$, defined across the motion's frame range ($f \in [0, L\rangle$, where $L$ is motion length in frames.) We normalize the acceleration signals to the 0-1 range: $\hat{a}_j(f) = a_j(f) / \mathop{max}(a_j(f))$. We use normalized acceleration signals of the root, torso, and head joints as local evidence measures indicating probability of significant gaze events (i.e, gaze shift starting or ending). We compute the global probability of a gaze event as a weighted sum of normalized acceleration signals:
-
+%
 \begin{align} \label{eq:GazeEventProbability}
 p_E(f) = \frac{\sum_{j \in J} w_j \hat{a}_j(f)}{\sum_j w_j}
 \end{align}
-
+%
 where $J$ is the set of joints, consisting of the root, torso, and head joints. Weights $w_j$ define each joint's influence on the global probability. We heuristically define a joint's weight to be greater the closer it is to the eyes, which means the head contributes more to the global probability than the torso or root. This choice is supported by findings (e.g.,~\citep{hietanen1999does}) showing the importance of head movements for the execution and perception of human gaze. We calculate joint weights as follows:
-
+%
 \begin{align} \label{eq:GazeJointWeight}
 w_j(f) = \frac{1}{1 + l_j}
 \end{align}
-
+%
 where $l_j$ is the distance of the joint $j$ to the eye joints, measured as cumulative length of the segments lying between them.
 
 Local maxima in the probability signal, $p_E$, correspond to beginnings and ends of gaze shifts. Since acceleration signals are likely to be noisy and contain a large number of spurious maxima, a bilateral filter is applied to $p_E$, which smooths out the maxima resulting from noise and preserves those that are kinematically significant. We set the filter's range parameter $\sigma_r$ to 0.5 and spatial parameter $\sigma_s$ to 3. The filtered probability signal is then searched for local maxima. Each pair of adjacent maxima defines a motion interval $I_k = (f_{s,k}, f_{e,k})$, which could either be a gaze shift or a fixation.
@@ -35,7 +35,7 @@ Local maxima in the probability signal, $p_E$, correspond to beginnings and ends
 \subsubsection{Motion Interval Classification}
 
 To determine if a motion interval $I_k$ is a gaze shift, we use the fact that gaze shifts are characterized by peaks in joint velocity and we construct another probabilistic measure (Figure~\ref{fig:GazeInstanceInference}). Let $v_j(f)$ be the angular velocity signal of joint $j$. We define $v_{s,j}^k$ and $v_{e,j}^k$ to be joint velocities at the boundaries of interval $I_k$. Furthermore, let $v_{\mathrm{max},j}^k$ and $v_{\mathrm{min},j}^k$ be the maximum and minimum joint velocity over the interval $I_k$. Then we define maximum and minimum velocity differences as $\Delta v_{\mathrm{max},j}^k = v_{\mathrm{max},j}^k - \mathop{min} (v_{s,j}^k, v_{e,j}^k)$ and $\Delta v_{\mathrm{min},j}^k = \mathop{max} (v_{s,j}^k, v_{e,j}^k) - v_{\mathrm{min},j}^k$. Finally, we define the ratio of these quantities as follows:
-
+%
 \begin{align} \label{eq:GazeShiftRatio}
 r_j^k =
 \begin{cases}
@@ -43,19 +43,19 @@ r_j^k =
 \frac{\Delta v_{\mathrm{max},j}^k}{\Delta v_{\mathrm{min},j}^k} & \text{otherwise}
 \end{cases}
 \end{align}
-
+%
 Ratio $r_j^k$ increases with the peak velocity relative to the velocities at interval boundaries, suggesting that the interval is a gaze shift. We use a logistic function to map the ratio to a probability value in the 0-1 range:
-
+%
 \begin{align} \label{eq:GazeShiftProbability}
 p_{S,j}^k = \frac{2}{1 + \mathop{exp}(-r_j^k)} - 1
 \end{align}
-
+%
 Finally, we compute the gaze shift probability as a weighted sum of per-joint probabilities:
-
+%
 \begin{align} \label{eq:GazeShiftGlobalProbability}
 p_S^k = \frac{\sum_{j \in J} w_j p_{S,j}^k}{\sum_j w_j}
 \end{align}
-
+%
 where $w_j$ are the joint weights defined previously.
 
 We classify the interval $I_k$ as a gaze shift if $p_S^k > P_{S,\mathrm{min}}$ (where $P_{S,\mathrm{min}}$ is a probability threshold set to 0.6 by default), otherwise we classify it as a fixation. Adjacent intervals that are classified as fixations get aggregated into a single fixation. We end up with a sequence of gaze shift-fixation pairs, from which we generate the sequence of gaze instances.
@@ -76,11 +76,11 @@ Our gaze inference method is based on three principles. First, the character is 
 We propose a probabilistic approach to gaze target inference. Recall the gaze instance specification from the preceding step: $G = (f_s, f_x, f_e)$. $f_x$ is the gaze fixation start time, when we know the character's eyes are aligned with the gaze target, and therefore the target must be within the character's view. We compute a probability distribution, $p_T(\mathbf{x})$, over the 2D projection space representing the character's view of the scene at the frame $f_x$ ($\mathbf{x}$ being 2D projection coordinates). For each point in the character's view, $p_T(\mathbf{x})$ gives us the probability that the character is gazing at it. We find the gaze target $T$ at the global maximum of $p_T$.
 
 We model $p_T(\mathbf{x})$ as a weighted sum of three probability terms, each implementing one principle of gaze target inference:
-
+%
 \begin{align} \label{eq:GazeTargetGlobalProbability}
 p_T = \frac{w_d p_d + w_i p_i + w_h p_h}{w_d + w_i + w_h}
 \end{align}
-
+%
 $p_d(\mathbf{x})$ is the directional term, which assigns higher probabilities to points lying along the head movement direction. $p_i(\mathbf{x})$ is the importance term, which is non-zero at points corresponding to objects and characters labeled as important. $p_h$ is the hand contact term, which is non-zero for objects that are about to be handled by the character (as indicated by hand contacts defined on the body motion). These terms contribute to the final probability, $p_T$, in proportion to their weights, $w_d$, $w_i$, and $w_h$. We find that the best inference results are obtained by setting these weights to 0.6, 0.15, and 0.25, respectively. Given the final probability $p_T$, we obtain the gaze target $T$ at the global maximum of $p_T$: $\mathbf{x}_T = \mathop{argmax}_{\mathbf{x}} p_T(\mathbf{x})$.
 
 Figure~\ref{fig:GazeTargetInference} shows an example scene view with the associated probability distributions and gaze target location indicated. In the remainder of the section, we provide more detail about the computation of individual probability terms.
@@ -97,7 +97,7 @@ Figure~\ref{fig:GazeTargetInference} shows an example scene view with the associ
 Computation of the directional term, $p_d(\mathbf{x})$, is based on the following idea. When the character shifts its gaze, its head follows an approximately linear path in the projection space. Let us denote the start and end points of this path as $\mathbf{x}_s$ and $\mathbf{x}_x$ (Figure~\ref{fig:GazeTargetInference}b). If the character always gazed at things head-on, then $p_d(\mathbf{x})$ would be the highest at the end of the path, $\mathbf{x}_x$. However, the character is as likely to be looking at something out of the corner of the eye, so the eyes may ``overshoot'' $\mathbf{x}_x$ and line up with a point further along the movement direction. Therefore, from the path $(\mathbf{x}_s, \mathbf{x}_x)$ we extrapolate a path extending to the point $\mathbf{x}_{\mathrm{OMR}}$, which lies on the edge of the eyes' motor range (OMR), beyond which the eyes cannot move (Figure~\ref{fig:GazeTargetInference}b). $p_d(\mathbf{x})$ has the maximum value of 1 along the path $(\mathbf{x}_x, \mathbf{x}_{\mathrm{OMR}})$ and linearly falls off to zero with distance from the path.
 
 We compute the probability fall-off as follows. Let $\mathbf{v}$ be the vector pointing from the eye centroid to the current point $\mathbf{x}$ in the projection space. Let $\mathbf{x}'$ be the projection of $\mathbf{x}$ onto the line $(\mathbf{x}_{\mathrm{OMR}}$ and $\mathbf{v}'$ the vector from the eye centroid to $\mathbf{x}'$. We denote $\phi$ the angle between vectors $\mathbf{v}$ and $\mathbf{v}'$, and we compute the probability at $\mathbf{x}$:
-
+%
 \begin{align} \label{eq:GazeDirectionProbability}
 p_d(\mathbf{x}) =
 \begin{cases}
@@ -105,7 +105,7 @@ p_d(\mathbf{x}) =
 0 & \text{otherwise}
 \end{cases}
 \end{align}
-
+%
 where $OMR$ is between $45\deg$ and $55\deg$ for humans.
 
 One might wonder why we do not set $p_d$ to zero everywhere outside the OMR region. Due to variability in human OMR and inconsistencies in spatial relationships of the capture environment and the virtual scene, the correct gaze target may actually lie outside the character's OMR. By allowing non-zero probability beyond that range, we allow our algorithm to pick up the gaze target even in such cases.
@@ -113,7 +113,7 @@ One might wonder why we do not set $p_d$ to zero everywhere outside the OMR regi
 \subsubsection{Importance term}
 
 The importance term, $p_i(\mathbf{x})$, increases the probability of placing gaze target handles on important objects and characters (Figure~\ref{fig:GazeTargetInference}c). Let $\Omega_i$ be the (possibly discontiguous) region in the projection space occupied by projections of all the visible, important objects. The importance term is computed as:
-
+%
 \begin{align} \label{eq:GazeImportanceProbability}
 p_i(\mathbf{x}) =
 \begin{cases}
@@ -121,13 +121,13 @@ p_i(\mathbf{x}) =
 0 & \text{otherwise}
 \end{cases}
 \end{align}
-
+%
 $\mathbf{v}$ is the vector from the eye centroid to the current projection point $\mathbf{x}$, while $\mathbf{n}$ is the object's surface normal at that point. We use the dot product for a pragmatic reason: to reduce the probability of placing gaze target handles along the object's silhouette.
 
 \subsubsection{Hand contact term}
 
 The hand contact term, $p_h$, increases the probability of placing gaze target handles on an object that the character is about to pick up or touch. As shown in studies of human eye-hand coordination~\citep{johansson2001eyehead}, gaze toward the object can begin as early as 3 seconds before hand contact and terminate up to 0.6 seconds after, though it is most likely to occur 1 second before hand contact. We use this rule to compute our probability term. If $t_x$ is the current time in the motion (corresponding to fixation start frame $f_x$) and $t_h$ is the start time of a hand contact with some object, then the probability of gaze toward that object is:
-
+%
 \begin{align} \label{eq:GazeHandContactProbabilityTime}
 p_{h,0} =
 \begin{cases}
@@ -137,9 +137,9 @@ p_{h,0} =
 0 & t_x \geq t_h + 0.6
 \end{cases}
 \end{align}
-
+%
 We define $\Omega_h$ to be the region of the projection space occupied by the handled object. The hand contact probability term (Figure~\ref{fig:GazeTargetInference}d) is computed as follows:
-
+%
 \begin{align} \label{eq:GazeHandContactProbability}
 p_h(\mathbf{x}) =
 \begin{cases}
@@ -147,7 +147,7 @@ p_{h,0} \mid \mathbf{v} \cdot \mathbf{n} \mid & \text{iff } \mathbf{x} \in \Omeg
 0 & \text{otherwise}
 \end{cases}
 \end{align}
-
+%
 This is similar to the importance term, except maximum probability is scaled by $p_{h,0}$.
 
 \subsubsection{Implementation}
@@ -160,11 +160,11 @@ To achieve reasonable computation time, we implemented the computation of the ga
 Having inferred all the gaze instances and their targets, we also compute the values of the head and torso alignment parameters, $\alpha_{H}$ and $\alpha_{T}$, which control the amount of head and torso reorientation in the gaze shift (Section~\ref{sec:GazeShiftModel}). Parameter values can range from 0 to 1, where 0 specifies minimal reorientation, while 1 fully aligns the head or torso with the target (Figure~\ref{fig:GazeShiftExamples}, 2-4). During gaze inference we compute the values of the alignment parameters that match the head and torso poses encoded in the original motion. The animator can then edit the poses by hand-editing the alignment values (Section~\ref{sec:GazeEditing}).
 
 Knowing the timing and target of each gaze shift, we can analytically estimate the head and torso alignment values by effectively reversing the procedure for gaze shift target directions computation, depicted in Figure~\ref{fig:GazeShiftTargetRot}. Let $f_s$ be the start frame and $f_x$ the end frame of the gaze shift. The torso rotates from the orientation $\mathbf{q}_T^s$ and stops at $\mathbf{q}_T^x$. We set the character to the start pose and compute $\mathbf{q}_{\mathrm{full},T}$, which is the orientation which would fully align the torso joint with the target (corresponding to $\alpha_T = 1$), and $\mathbf{q}_{\mathrm{min},T}$, which is the minimal torso orientation (corresponding to $\alpha_{T} = 0$). Next, we project $\mathbf{q}_{T}^x$ onto the arc defined by orientations $\mathbf{q}_{T}^s$ and $\mathbf{q}_{\mathrm{full},T}$---we denote this projected orientation $\mathbf{q}_{T,\mathrm{proj}}$. Finally, we compute $\alpha_T$ as:
-
+%
 \begin{align} \label{eq:GazeAlignmentInference}
 \alpha_T = \frac{\angle(\mathbf{q}_{T,\mathrm{proj}}, \mathbf{q}_{\mathrm{min},T})}{\angle(\mathbf{q}_{\mathrm{full},T}, \mathbf{q}_{\mathrm{min},T})}
 \end{align}
-
+%
 The procedure for computing $\alpha_{H}$ is analogous.
 
 \subsection{Evaluation}

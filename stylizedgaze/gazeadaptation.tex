@@ -26,23 +26,23 @@ Models for humanlike gaze shifts, when applied to a stylized character with larg
 
 Our approach to remove cross-eyedness is illustrated in Figure~\ref{fig:CrosseyednessRemoval}. We measure cross-eyedness as the angle between the gaze directions of the two eyes, $\gamma$. Allowable cross-eyedness is defined by a threshold $\gamma_{MAX}$, which we leave at a default value of 0.002$^{\circ}$ for the examples in this paper.
 We define the \textit{effective target position}, $\mathbf{p}_T'$, as the position behind the physical gaze target that the eyes can converge on without violating the cross-eyedness threshold. It is calculated by moving the target position away from the character to reduce $\gamma$ below the threshold value $\gamma_{MAX}$:
-
+%
 \begin{align}
 \mathbf{p}_T' = \mathbf{p}_{EC} + \frac{\mathbf{p}_T - \mathbf{p}_{EC}}{||\mathbf{p}_T - \mathbf{p}_{EC}||} \frac{\sin(\theta + \gamma_{MAX}/2)}{sin(\gamma_{MAX}/2)}||\mathbf{p}_L - \mathbf{p}_{EC}||.
 \end{align}
-
+%
 The above technique is effective at reducing cross-eyedness as shown in Figure~\ref{fig:CrosseyednessFixExample}.
 
 The cross-eyedness removal technique is applied in a view-dependent manner; we may only apply it if the viewer cannot notice it from the current viewpoint.
 If the viewer \emph{is} the gaze target, they may notice the character is looking a bit ``past'' them if cross-eyedness removal is applied.
 Therefore, the cross-eyedness threshold $\gamma_{MAX}$ is adjusted based on the target viewing angle $\phi_T$, which we define as the angle between the viewer's gaze direction and the character's gaze direction at the target pose. We adjust $\gamma_{MAX}$ as follows:
-
+%
 \begin{align}
 \label{eq:CrosseyednessFix}
 \gamma\,'_{MAX} &= 2 OMR_{IN} + (\gamma_{MAX} - 2 OMR_{IN}) p_{\phi} \\
 p_{\phi} &= \frac{\phi_T}{9.6W},~ 0 \le p_{\phi} \le 1 \nonumber
 \end{align}
-
+%
 where $OMR_{IN}$ is inward OMR of the eye, and $W$ is the eye width parameter. The $9.6^{\circ}$ constant is derived from parameters of the viewing cone in which humans are able to detect subtle differences in gaze direction~\citep{argyle1976gaze}. We scale this value by $W$, as larger eyes may make such judgements easier. The viewing cone parameter, $p_{\phi}$, expresses the drop-off in judgement accuracy from the center of the cone toward the edge. We use $p_{\phi}$ to vary allowable cross-eyedness from the mechanical limit, $2 OMR_{IN}$, at the center of the cone, to $\gamma_{MAX}$ at the cone's edge and beyond.
 
 \subsubsection{Eye Divergence}
@@ -57,11 +57,11 @@ where $OMR_{IN}$ is inward OMR of the eye, and $W$ is the eye width parameter. T
 A consequence of OMR asymmetry, eye divergence is handled by allowing the eyes to diverge during the gaze shift and imposing the principle that VOR for both eyes must trigger \emph{at the same time}. The leading eye will always overshoot the gaze target by a small amount and only begin moving in the opposite direction (due to VOR) when the trailing eye has reached the target. This behavior prevents the leading eye from aligning exactly with the target, as the accumulated overshoot rotation introduces an offset into the eye's target rotation. However, much like with cross-eyedness removal, this minor deviation from correct gaze convergence is difficult to detect. This technique is therefore an effective way of eliminating disconjugate eye movements as shown in Figure~\ref{fig:EyeDivergenceFixExample}.
 
 As with cross-eyedness removal, eye divergence is applied in a view-dependent manner. The target overshoot introduced by the technique may be noticeable to the viewer at very low viewing angles, which we therefore adjust using the viewing cone parameter, $p_{\phi}$, that we defined in Equation~\ref{eq:CrosseyednessFix}. Specifically, we scale the outward OMR based on target viewing angle, $\phi_T$:
-
+%
 \begin{equation}
 OMR_{OUT}' = OMR_{IN} + (OMR_{OUT} - OMR_{IN}) p_{\phi}
 \end{equation}
-
+%
 This adjustment ensures that outward OMR will contract at low $\phi_T$, making the OMR symmetrical.
 
 \subsection{Gaze Kinematics Adaptation}
@@ -78,11 +78,11 @@ Because most stylized characters do not have the same proportions and OMR as hum
 Our gaze kinematics adaptation is based on two key ideas. First, since stylized eyes can be asymmetric, each eye may need to cover a different angular distance as it rotates toward its OMR. We want to ensure that both eyes reach the OMR at the same time, thereby preventing artifacts such as \emph{stuck eye}. It follows that the eyes need to move at different velocities to reach the OMR at the same time. We define separate peak velocities, $v_{MAX,j}$, for each eye $j$. The second key idea is that stylized eyes are larger and therefore more massive than real human eyes, so they should move more slowly.
 
 We use the anatomic parameters eye width, $W$, and muscle strength, $F$, to compute the peak eye velocities. As volume---and therefore mass---increases with $W^3$, both peak velocities are scaled down by the same factor. $F$ is used to compute an intermediate parameter $F'$, which varies depending on how much the head contributes to the gaze shift. We compute $F'$ as follows:
-
+%
 \begin{equation}
 F' = ( 1 - \alpha_H ) W^3 + \alpha_H F.
 \end{equation}
-
+%
 The parameter $\alpha_H$ specifies how much the head contributes to the gaze shift. When the head carries the eyes through most of the gaze shift (high $\alpha_H$), eye velocity should be lower in order to prevent the eyes from appearing improbably fast. When the head moves only a small distance, the eyes should move more quickly to prevent the gaze shift from appearing slow and sluggish.
 
 To account for OMR asymmetry and prevent artifacts such as \textit{stuck eye}, we also need to apply a separate scaling factor to each velocity. Assume that $A_{OMR,j}$ is the distance that the eye $j$ can rotate before reaching its OMR, while $A_{MAX}$ is the highest rotational distance to the OMR for \emph{both} eyes. The peak velocity is scaled by $A_{OMR,j}/A_{MAX}$. This has the effect of slowing down the eye that has less rotation to complete, thus ensuring that both eyes reach the OMR at the same time.
@@ -91,11 +91,11 @@ Finally, we also introduce a velocity multiplier parameter, $\chi$, and apply it
 % NOTE: Clarified how the parameter might be used by explaining how we use it. -- Tomislav
 
 We introduce these modifications to Equation~\ref{eq:AndristVmaxE} to create the following updated equation for calculating peak eye velocities:
-
+%
 \begin{equation}
 v_{MAX,j} = \frac{F}{W^3}( \frac{2}{75} A_{MAX} + \frac{1}{6} ) \frac{A_{OMR}}{A_{MAX}} \chi v_0%+ 3 \delta V_{MAX,H}
 \end{equation}
-
+%
 The first, third, and fourth terms implement our modifications to gaze kinematics. The second term speeds up or slows down the eyes depending on eye movement amplitude and is similar to the term used by the original model to calculate the peak velocity, except that $A_{MIN}$ is replaced by $A_{MAX}$.
 %The rightmost term $3 \delta v_{MAX,H}$ addresses an issue with the original gaze model. For certain rare gaze shifts, the angle $\delta$ between eye and head rotation directions may become much greater than 0; eyes could even end up moving in the opposite direction of the head. In these cases, the head is slowing down the eyes rather than helping them reach the target, so the above term speeds up the eyes to compensate for the opposing head rotation.
 % Since this is a bugfix of the original model, maybe it doesn't need to be here? It muddles the story somewhat, and takes up space...

@@ -17,20 +17,20 @@ This parametrization decouples gaze shift kinematics from pose computation, whic
 I will now explain how to compute the pose of the head by solving for the head joint orientations, $\mathbf{q}_{\mathrm{Head},j}$, given an input facing direction $\mathbf{d}_{\mathrm{Head}}$. Torso pose is computed analogously, with a few differences I will clarify later. Eye orientations are computed trivially---since each eye consists of only one joint, its orientation is computed such that the eye's forward direction vector aligns with the input direction $\mathbf{d}_k$.
 
 Let $N_{\mathrm{Head}}$ be the number of joints that comprise the head. Joint indices $j$ range from 0 to $N_{\mathrm{Head}} - 1$. Lower index numbers correspond to joints that are higher in the chain; e.g., the top neck joint has the index 0. Joint orientations are computed in the order of decreasing indices---from $N_{\mathrm{Head}} - 1$ to 0. Let $\mathbf{q}_{\mathrm{Head},j}'$ be the quaternion that would bring the $j$th joint's forward direction vector into alignment with $\mathbf{d}_{\mathrm{Head}}$. We need to partially rotate the joint $j$ toward $\mathbf{q}_{\mathrm{Head},j}'$, such that the contributions of all the joints end up aligning the top joint ($j = 0$) with $\mathbf{d}_{\mathrm{Head}}$. We compute each joint's orientation as follows:
-
+%
 \begin{align}
 \label{eq:GazeShiftJointOrientation}
 \mathbf{q}_{\mathrm{Head},j} = \mathop{slerp}(\mathbf{q}_I, \mathbf{q}_{\mathrm{Head},j}', c_j)
 \end{align}
-
+%
 where $\mathbf{q}_I$ is the identity quaternion and $\mathop{slerp}$ is the spherical linear interpolation between two quaternions. $c_j$ is the contribution of the joint $j$ to the overall rotation toward $\mathbf{d}_{\mathrm{Head}}$. It is computed as follows:
-
+%
 \begin{align}
 \label{eq:GazeShiftJointContribution}
 c_j &= \frac{c_j^* - c_{j+1}^*}{1 - c_{j+1}^*} \\
 c_j^* &= \frac{(N_{\mathrm{Head}} - j)(N_{\mathrm{Head}} - j + 1)}{(N_{\mathrm{Head}} (N_{\mathrm{Head}} + 1)}
 \end{align}
-
+%
 For the first joint, $j = N_{\mathrm{Head}} - 1$, $c_{j+1}^*$ is initialized to 0.
 
 This approach ensures that joints higher up in the chain contribute more to the overall rotation. If there are three neck joints ($N_{\mathrm{Head}} = 3$), then their absolute contributions to the overall rotation are $\frac{1}{2}$, $\frac{1}{3}$, and $\frac{1}{6}$, respectively.
@@ -66,12 +66,12 @@ At the end of the gaze shift, both eyes lock onto the gaze target. If the relati
 \end{figure*}
 
 The eye movements follow the piecewise polynomial velocity profile shown in Figure~\ref{fig:VelocityProfile}, left. The peak eye velocity $v_{\mathrm{max},E}$ increases monotonously with the gaze shift amplitude and levels off as the amplitude exceeds 60$^{\circ}$. The formula is derived from \citet{baloh1975quantitative}:
-
+%
 \begin{align} \label{eq:AndristVmaxE}
 v_{\mathrm{max},E} &= (\frac{420 v_{0,E}}{200} (1 - \mathop{exp}(\frac{-A_{\mathrm{min}}}{14}) \\
 A_{\mathrm{min}} &= \mathop{min}( \mathop{min}_{j \in \mathrm{Eyes}}(A_j), \mathrm{OMR} ) \nonumber
 \end{align}
-
+%
 $v_{0,E}$ is an overridable eye-velocity parameter, which we leave at the default value of 170$^{\circ}/s$, while $A_{\mathrm{min}}$ is the estimated amplitude of the eye movement. The eyes are mechanically restricted in how far they can rotate in their sockets. The maximum range of eye motion is referred to as the \emph{ocular motor range} (OMR), and it is between 45$^{\circ}$ and 55$^{\circ}$ in any direction. When the gaze target lies beyond the eyes' motor range, we set the eye movement amplitude $A_{\mathrm{min}}$ to the OMR value; otherwise, we set it to the lower of the angular distances $A_j$ between initial eye gaze direction and target direction.
 
 As we can see from the Equation~\ref{eq:AndristVmaxE}, eye movements in gaze shifts are very fast, with peak velocities typically exceeding 300$^{\circ}/s$.
@@ -93,21 +93,21 @@ I will now explain how the model executes coordinated eye-head movements. At the
 The gaze shift consists of several phases (Figure~\ref{fig:AndristGazeModel}). At the start (A), both the eyes and head begin rotating toward the target. Since the eyes move much faster than the head, they quickly reach either the target or the limit of their OMR, set to be between 45$^{\circ}$ and 55$^{\circ}$ in any direction (B). There they remain blocked until the head catches up. Eventually the head rotates far enough to bring the eyes into alignment with the target (C). Vestibulo-ocular reflex (VOR) locks the eyes onto the target as the head continues to align. Depending on the specified head alignment, the head either stops moving immediately ($\alpha_H = 0$) or continues rotating until it has reached the required alignment with the target (D).
 
 The head motion follows a piecewise polynomial velocity profile similar to the one for the eyes (Figure~\ref{fig:VelocityProfile}, right). Peak head velocity $v_{\mathrm{max},H}$ is computed at the start of the gaze shift; it is proportional to the expected amplitude of the head movement \citep{guitton1987gaze}:
-
+%
 \begin{align} \label{eq:AndristVmaxH}
 v_{\mathrm{max},H} &= (\frac{4}{3} \frac{A_H}{50} + \frac{2}{5}) v_{0,H}
 \end{align}
-
+%
 $A_H$ is the rotational amplitude of the head movement in degrees. Velocity parameter $v_{0,H}$ is configurable, with the default value of 70$^{\circ}/s$.
 
 \subsubsection{Computing OMR}
 
 As mentioned, human eyes are mechanically constrained in their movements by the OMR, which is between $45^{\circ}$ and $55^{\circ}$. Encoding these OMR values as static parameters into virtual humans is not sufficient, however, as the effective OMR depends on the initial position of the eyes at the start of the gaze shift and may fluctuate over the course of the gaze shift. These fluctuations are a product of a neural (as opposed to mechanical) limitation imposed on eye motion~\citep{guitton1987gaze}. We define the initial eye position (IEP) as the rotational offset of the eyes from the central orientation (where the eyes are looking straight ahead). We define IEP to be non-zero only when the eyes are \emph{contralateral} to the target, i.e., their initial orientation is on the opposite side of the center from the target. The relationship between the IEP and the neurally limited OMR is obtained from \citet{guitton1987gaze}:
-
+%
 \begin{align} \label{eq:AndristOMRIEP}
 \mathrm{OMR} &= \mathrm{OMR}_0 (\frac{1}{360} \mathrm{IEP} + 0.75)
 \end{align}
-
+%
 where $\mathrm{OMR}_0$ is the mechanical OMR value ($45^{\circ}$ in most of our examples).
 
 \subsubsection{Head Latency}
@@ -124,7 +124,7 @@ Gaze shifts can also involve upper-body movements in addition to eye and head mo
 The implementation of upper-body movements in the gaze shift model was largely guided by existing neurophysiological measurements of gaze in~\citep{mccluskey2007monkeys}, as well as our own experimentation. We introduce a new body part---the torso, which has its own alignment parameter $\alpha_T$. Torso alignment specifies the participation of the torso in the gaze shift. At $\alpha_T = 0$ the torso will rotate only the minimal amount (Figure~\ref{fig:GazeShiftExamples}, 3), while $\alpha_T = 1$ will make the torso fully align with the target (Figure~\ref{fig:GazeShiftExamples}, 4).
 
 It has been shown that the amount of torso movement increases linearly with gaze shift amplitude~\citep{mccluskey2007monkeys}. Smaller gaze shifts do not engage the torso at all. The minimal amount of torso rotation as a function of amplitude in degrees is computed as follows:
-
+%
 \begin{align}
 \label{eq:TorsoAmin}
 A_{T,\mathrm{min}} = \begin{cases}
@@ -133,7 +133,7 @@ A_{T,\mathrm{min}} = \begin{cases}
 0 & \mbox{iff } A < 20^{\circ} \\
 \end{cases}
 \end{align}
-
+%
 where $A$ is the overall gaze shift amplitude, estimated as the angle between the current and target eye gaze direction. Note that for gaze shifts where $A \geq 20^{\circ}$, the torso will rotate by $A_{T,\mathrm{min}}$ even if $\alpha_T = 0$. For higher values of $\alpha_T$, the torso will rotate toward the target even more.
 
 \begin{figure*}
@@ -146,21 +146,21 @@ where $A$ is the overall gaze shift amplitude, estimated as the angle between th
 The sequence of phases in a gaze shift involving the upper body is shown in Figure~\ref{fig:OurGazeModel}. At the start of the gaze shift (A), the torso is stationary for a period of $\tau_T$ $ms$, which we call the \emph{torso latency}. After the elapsing of that period, the torso begins to move. It stops moving when it reaches the correct orientation relative to the target, as specified by $\alpha_T$. The torso moves more slowly than the eyes and head, so it may continue to move even as the eyes and head reach and lock onto the target (D, E). However, for gaze shifts with low latency and little torso movement, the torso may reach its final orientation while the head is still moving.
 
 Since prior studies of upper-body motion do not provide an exact profile of torso velocity, we apply the peaked profile used for head velocity to torso motion as well (Figure~\ref{fig:VelocityProfile}, right). The peak torso velocity $v_{\mathrm{max},T}$ should be lower than the peak head velocity, but still proportional to the gaze shift amplitude~\citep{mccluskey2007monkeys}. Guided by these principles and experimentation, we derived the following expression for the peak torso velocity:
-
+%
 \begin{align} \label{eq:TorsoVmax}
 v_{\mathrm{max},T} &= (\frac{4}{3} \frac{A_T}{15} + 2) v_{0,T}
 \end{align}
-
+%
 where $A_T$ is the rotational amplitude of the torso, while $v_{0,T}$ is a configurable velocity parameter, which we leave at the default value of 10$^{\circ}/s$.
 
 \subsubsection{Torso Latency}
 
 \citet{mccluskey2007monkeys} found that the torso does not begin to move at the same time as the eyes and head, but with some latency $\tau_T$ that depends on factors such as gaze shift amplitude and target predictability. In our experiments, we found that torso latency value had a great impact on the naturalness of upper-body motion, so it could not be simply set to a fixed value. Instead, based on the results from the McCluskey study, we compute the torso latency (in milliseconds) as follows:
-
+%
 \begin{align} \label{eq:TorsoLatency}
 \tau_{T} = 0.25 A + 47.5
 \end{align}
-
+%
 where $A$ is the gaze shift amplitude. It follows from the above equation that in large gaze shifts, the torso trails behind the head and eyes more.
 
 \subsection{Whole-Body Movements}
@@ -192,12 +192,12 @@ If the gaze shift involves lower-body movement ($\alpha_B > 0$), then the charac
 Before the gaze shift begins, we compute the target direction for each body part, $\mathbf{v}_{T,k}$. For the eyes, the computation proceeds as follows (Figure~\ref{fig:GazeShiftTargetRot}, left). We compute the fully aligned eye direction $\mathbf{v}_{\mathrm{full},E}$---the orientation at which the eye is staring directly at the target. If the target lies within the eye's OMR, i.e., if it is reachable by the eyes, then $\mathbf{v}_{T,E} = \mathbf{v}_{\mathrm{full},E}$. If not, then $\mathbf{v}_{T,E}$ is obtained by clamping $\mathbf{v}_{\mathrm{full},E}$ to the OMR (computed using Equation~\ref{eq:AndristOMRIEP}).
 
 The method of computing target directions for the torso is illustrated in Figure~\ref{fig:GazeShiftTargetRot}, right. We first compute the fully aligned torso direction $\mathbf{v}_{\mathrm{full},T}$, which is the direction the torso would have if it were completely facing the target. We choose $\mathbf{v}_{\mathrm{full},T}$ such that it is parallel to the vector $e$ pointing from the eye centroid to the target. We also know the torso must rotate by a minimal amount $A_{T,\mathrm{min}}$ (see Equation~\ref{eq:TorsoAmin}), which we use to compute the minimal torso direction $\mathbf{v}_{\mathrm{min},T}$. The final target direction, $\mathbf{v}_{\mathrm{T},T}$, lies between the minimal direction $\mathbf{v}_{\mathrm{min},T}$ and fully aligned direction $\mathbf{v}_{\mathrm{full},T}$ and is determined by the torso alignment parameter $\alpha_T$. To compute it, we must interpolate between $\mathbf{v}_{\mathrm{min},T}$ and $\mathbf{v}_{\mathrm{full},T}$ using $\alpha_T$. One way to do that is to compute the angle $\phi_T$ between the direction vectors and then rotate $\mathbf{v}_{\mathrm{min},T}$ toward $\mathbf{v}_{\mathrm{full},T}$ by $\alpha_T \phi_T$---this will give us the target direction $\mathbf{v}_{\mathrm{T},T}$. We use a similar method to compute $\mathbf{v}_{\mathrm{min},T}$---we interpolate between $\mathbf{v}_{\mathrm{S},T}$ and $\mathbf{v}_{\mathrm{full},T}$ using the parameter $\alpha_{\mathrm{min},T}$:
-
+%
 \begin{align}
 \label{eq:TorsoMinRotParam}
 \alpha_{\mathrm{min},T} &= \frac{A_{T,\mathrm{min}}}{\angle(\mathbf{v}_{S,T}, \mathbf{v}_{\mathrm{full},T})})
 \end{align}
-
+%
 where the symbol $\angle$ denotes the angle between two vectors.
 
 Note that when interpolating between direction vectors, we must be careful to always consider the arc between them that passes in \emph{front} of the character, which is not necessarily the shorter arc. For very large gaze shifts with amplitudes exceeding 180$^\circ$, the body part must rotate along the longer arc, otherwise the character will twist back around in a biologically impossible way.
@@ -209,49 +209,49 @@ The method for the head is nearly identical to that for the torso (Figure~\ref{f
 As the gaze shift executes, body part directions are updated at the constant frame rate of 60 \emph{fps}. On every frame, the update algorithm iterates through the body parts in the following order: torso, head, and the eyes. For the torso and head, the algorithm first checks if its latency time ($\tau_T$ or $\tau_H$, respectively) has elapsed---if it has, the body part is ready to begin rotating. Next, for each body part $k$ we update its target direction, $\mathbf{v}^f_{T,k}$, to account for possible movements of the target relative to the torso (e.g., due to the target moving or the character walking.) $f$ is the index of the current frame. Next, we compute the body part's current rotational velocity $v^f_k$ using the appropriate velocity profile (Figure~\ref{fig:VelocityProfile}). Finally, we incrementally rotate the body part toward its target direction $\mathbf{v}^f_{T,k}$. The gaze shift ends when both eyes have aligned with the target, the head and torso have reached their target directions, and the locomotion controller has finished repositioning the feet.
 
 The velocity profiles used to compute $v^f_k$ for each body part are shown in Figure~\ref{fig:VelocityProfile}. We derived these piecewise polynomial profiles as approximations of the eye and head velocity profiles reported in literature~\citep{kim2007head,lee2002eyes}. The velocity profile for the eyes has the following mathematical expression:
-
+%
 \begin{align} \label{eq:EyeVelocity}
 v^f_E = \begin{cases}
 (r^f_E + 0.5)v_{\mathrm{max},E} & \mbox{iff } r^f_E < 0.5 \\
 (8{r^f_E}^3 - 18{r^f_E}^2 + 12r^f_E - 1.5)v_{\mathrm{max},E} & \mbox{iff } r^f_e \geq 0.5
 \end{cases}
 \end{align}
-
+%
 The velocity profile for the head and torso (Figure~\ref{fig:VelocityProfile}, right) is defined as follows:
-
+%
 \begin{align} \label{eq:HeadTorsoVelocity}
 v^f_k = \begin{cases}
 (1.5r^f_k + 0.25)v_{\mathrm{max},k} & \mbox{iff } r^f_k < 0.5 \\
 (12{r^f_k}^3 - 27{r^f_k}^2 + 18r^f_k - 2.75)v_{\mathrm{max},k} & \mbox{iff } r^f_k \geq 0.5
 \end{cases}
 \end{align}
-
+%
 $r^f_k$ is the gaze shift progress parameter, which monotonically increases from 0 to 1 over the course of the gaze shift. Body part $k$ is considered to have reached the target when $r^f_k = 1$. The parameter $r^f_k$ is updated on every frame based on the angular distance covered by the body part. The update equation is as follows:
-
+%
 \begin{align} \label{eq:RotProgressUpdate}
 r^f_k &= r^{f-1}_k + \frac{\Delta t \cdot v^f_k}{\angle(\mathbf{v}_{S,k}, \mathbf{v}^f_{T,k})}
 \end{align}
-
+%
 where $\Delta t$ is the time since the last update.
 
 Given the gaze shift progress $r^f_k$ for each body part, we can compute its new direction $\mathbf{v}^f_k$ by interpolating between the starting direction $\mathbf{v}_{S,k}$ and the target direction $\mathbf{v}^f_{T,k}$. This interpolation can be performed as suggested earlier in the section. Having computed the new direction of the body part, we solve for its pose as described previously.
 
 Updating the target direction of each body part, $\mathbf{v}^f_{T,k}$, is simpler than the initial computation described above. First we recompute the fully aligned direction $\mathbf{v}^f_{\mathrm{full},k}$ and then we update the target direction by interpolating between $\mathbf{v}_{S,k}$ and $\mathbf{v}^f_{\mathrm{full},k}$ using the parameter $\alpha^f_k$:
-
+%
 \begin{align}
 \label{eq:TargetRotUpdate}
 \alpha^f_k &= \frac{A^f_k}{\angle(\mathbf{v}_{S,k}, \mathbf{v}^{f-1}_{\mathrm{full},k})} \\
 A^{f-1}_k &= \angle(\mathbf{v}_{S,j}, \mathbf{v}^{f-1}_{T,j}) \nonumber
 \end{align}
-
+%
 The parameter $r^f_k$ must also be re-normalized by multiplying it by $A^{f-1}_k / A^f_k$.
 
 An additional consideration in our model is dynamic OMR. \citet{guitton1987gaze} found that the OMR gets narrower as the head velocity increases. We simulate this property in our model and recompute the OMR on every frame using the following equation:
-
+%
 \begin{align} \label{eq:OMRUpdate}
 \mathrm{OMR}^f &= \mathrm{OMR} (-\frac{1}{600} v^f_H + 1)
 \end{align}
-
+%
 where $v^f_H$ is the current head velocity, computed using Equation~\ref{eq:HeadTorsoVelocity}.
 
 \subsection{Secondary Gaze Movements}
