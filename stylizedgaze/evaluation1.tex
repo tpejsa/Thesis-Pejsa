@@ -8,33 +8,42 @@
 To evaluate the effectiveness of stylized gaze methods in reducing visual artifacts, we conducted measurements of artifact prevalence on a variety of characters using a set of objective metrics. These metrics reflect the amount of observable artifacts over the course of a gaze shift. Because each artifact is the product of a particular combination of the pose and kinematics of the eyes and the head, whether or not the artifact is present at a particular frame and its severity can be objectively quantified. Each metric computes the presence of an artifact at each frame and sums them over all the frames of the gaze shift to calculate the ``amount'' in which the artifact appears. Severity is determined by weighing the amount of an artifact by the cosine fall-off of the viewing angle, $\phi$ (i.e., the angle between the view direction and the character's gaze direction), thus giving less weight to frames where the character's eyes are less visible. The artifact amount is also weighed by the blink height at each frame to account for eye blinks that partially or fully conceal the artifacts. The aggregated amounts are then normalized by the duration of the gaze shift, providing us with quantities that we can compare across different characters and gaze shift configurations. Our metrics include cross-eyedness amount, $\tau_{CE}$, OMR-block amount, $\tau_{OMR}$, eye retraction and divergence amount, $\tau_{ERD}$, and stuck eye amount, $\tau_{SE}$.
 
 \begin{table}
-\footnotesize
 \centering
-\caption{Artifact reduction evaluation results. Each cell contains the aggregate score for a particular metric on a particular character with the original motion or motion adapted using our methods.}
-\vspace{4pt}
-\begin{tabular}{@{}llcccc@{}}\toprule
-Character & Model & $\tau_{CE}$ & $\tau_{OMR}$ & $\tau_{ERD}$ & $\tau_{SE}$ \\
-\midrule
-RealisticFemale1 & \textbf{Original} & 0.30 & 0.24 & 0.20 & 0.03 \\\hdashline
-RealisticFemale2 & \textbf{Original} & 0.31 & 0.22 & 0.20 & 0.03 \\\hdashline
-\multirow{2}{*}{SemiStylizedFemale} & \textbf{Original} & 0.31 & 0.23 & 0.18 & 0.03 \\
-& \textbf{Adapted} & 0.07 & 0.10 & 0.10 & 0.02 \\\hdashline
-\multirow{2}{*}{StylizedFemale} & \textbf{Original} & 0.40 & 0.25 & 0.21 & 0.05 \\
-& \textbf{Adapted} & 0.12 & 0.10 & 0.10 & 0.02 \\\hdashline
-\multirow{2}{*}{StylizedMale} & \textbf{Original} & 0.32 & 0.22 & 0.17 & 0.03 \\
-& \textbf{Adapted} & 0.09 & 0.10 & 0.10 & 0.03 \\\hdashline
-\multirow{2}{*}{EmotiGuy} & \textbf{Original} & 0.27 & 0.33 & 0.20 & 0.07 \\
-& \textbf{Adapted} & 0.06 & 0.12 & 0.13 & 0.03 \\\hdashline
-\multirow{2}{*}{Jack} & \textbf{Original} & 0.06 & 0.46 & 0.11 & 0.05 \\
-& \textbf{Adapted} & 0.07 & 0.16 & 0.07 & 0.06 \\\hdashline
-\multirow{2}{*}{Donkey} & \textbf{Original} & 0.18 & 0.34 & 0.22 & 0.10 \\
-& \textbf{Adapted} & 0.04 & 0.10 & 0.15 & 0.03 \\\hdashline
-\multirow{2}{*}{Fish} & \textbf{Original} & 0.54 & 0.30 & 0.26 & 0.08 \\
-& \textbf{Adapted} & 0.16 & 0.10 & 0.14 & 0.03 \\\hdashline
-\multirow{2}{*}{NastyMonster} & \textbf{Original} & 0 & 0.20 & 0.29 & 0 \\
-& \textbf{Adapted} & 0 & 0.09 & 0.18 & 0 \\
-\bottomrule
+\def\arraystretch{1.5}
+\begin{tabular}{|l|l|r|r|r|r|}
+\hline
+\textbf{Character} & \textbf{Motion} & $\tau_{CE}$ & $\tau_{OMR}$ & $\tau_{ERD}$ & $\tau_{SE}$ \\
+\Xhline{2\arrayrulewidth}
+RealisticFemale1 & Original & 0.30 & 0.24 & 0.20 & 0.03 \\
+\hdashline
+RealisticFemale2 & Original & 0.31 & 0.22 & 0.20 & 0.03 \\
+\hdashline
+\multirow{2}{*}{SemiStylizedFemale} & Original & 0.31 & 0.23 & 0.18 & 0.03 \\
+& Adapted & 0.07 & 0.10 & 0.10 & 0.02 \\
+\hdashline
+\multirow{2}{*}{StylizedFemale} & Original & 0.40 & 0.25 & 0.21 & 0.05 \\
+& Adapted & 0.12 & 0.10 & 0.10 & 0.02 \\
+\hdashline
+\multirow{2}{*}{StylizedMale} & Original & 0.32 & 0.22 & 0.17 & 0.03 \\
+& Adapted & 0.09 & 0.10 & 0.10 & 0.03 \\
+\hdashline
+\multirow{2}{*}{EmotiGuy} & Original & 0.27 & 0.33 & 0.20 & 0.07 \\
+& Adapted & 0.06 & 0.12 & 0.13 & 0.03 \\
+\hdashline
+\multirow{2}{*}{Jack} & Original & 0.06 & 0.46 & 0.11 & 0.05 \\
+& Adapted & 0.07 & 0.16 & 0.07 & 0.06 \\
+\hdashline
+\multirow{2}{*}{Donkey} & Original & 0.18 & 0.34 & 0.22 & 0.10 \\
+& Adapted & 0.04 & 0.10 & 0.15 & 0.03 \\
+\hdashline
+\multirow{2}{*}{Fish} & Original & 0.54 & 0.30 & 0.26 & 0.08 \\
+& Adapted & 0.16 & 0.10 & 0.14 & 0.03 \\
+\hdashline
+\multirow{2}{*}{NastyMonster} & Original & 0 & 0.20 & 0.29 & 0 \\
+& Adapted & 0 & 0.09 & 0.18 & 0 \\
+\hline
 \end{tabular}
+\caption{Artifact reduction evaluation results. Each cell contains the aggregate score for a particular metric on a particular character with the original motion or motion adapted using our methods.}
 \label{tab:EvalResults}
 \end{table}
 
