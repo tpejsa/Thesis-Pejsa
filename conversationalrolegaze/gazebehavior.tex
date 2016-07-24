@@ -6,7 +6,7 @@ The current work considers multiparty interaction centered on a virtual agent, w
 
 \begin{figure}
 \centering
-\includegraphics[width=0.9\textwidth]{conversationalrolegaze/Figures/FTorsoAlign.pdf}
+\includegraphics[width=0.75\textwidth]{conversationalrolegaze/Figures/FTorsoAlign.pdf}
 \caption{Computing the torso alignment parameter $\alpha_T$ need for the agent to reconfigure the F-formation when a new user has joined the interaction.}
 \label{fig:FTorsoAlign}
 \end{figure}
@@ -70,27 +70,27 @@ All direction vectors are projected onto the horizontal plane. The agent must re
 \hline
 \textbf{Gaze Target} & \textbf{Footing Configuration} & \textbf{Fixation Length} \\
 \hline
-\multirow{3}{*}{Addressee \emph{face}} & 1 addressee, no bystanders & $\mathop{Gamma}(k = 1.65, \Phi = 0.56)}$ \\
-& 1 addressee, 1 bystander & $\mathop{Gamma}(k = 0.74, \Phi = 1.55}$ \\
-& 2+ addressee & $\mathop{Gamma}(k = 1.48, \Phi = 1.10}$ \\
+\multirow{3}{*}{Addressee \emph{face}} & 1 addressee, no bystanders & $\mathop{Gamma}(1.65, 0.56)$ \\
+& 1 addressee, 1 bystander & $\mathop{Gamma}(0.74, 1.55)$ \\
+& 2+ addressee & $\mathop{Gamma}(1.48, 1.10)$ \\
 \hdashline
-\multirow{3}{*}{Addressee \emph{torso}} & 1 addressee, no bystanders & $\mathop{Gamma}(k = 1.92, \Phi = 0.84}$ \\
-& 1 addressee, 1 bystander & $\mathop{Gamma}(k = 1.72, \Phi = 1.20}$ \\
-& 2+ addressee & $\mathop{Gamma}(k = 1.92, \Phi = 0.52}$ \\
+\multirow{3}{*}{Addressee \emph{torso}} & 1 addressee, no bystanders & $\mathop{Gamma}(1.92, 0.84)$ \\
+& 1 addressee, 1 bystander & $\mathop{Gamma}(1.72, 1.20)$ \\
+& 2+ addressee & $\mathop{Gamma}(1.92, 0.52)$ \\
 \hdashline
-Bystander \emph{face} & 1+ bystanders & $\mathop{Gamma}(k = 2.19, \Phi = 0.44}$ \\
+Bystander \emph{face} & 1+ bystanders & $\mathop{Gamma}(2.19, 0.44)$ \\
 \hdashline
-Bystander \emph{torso} & 1+ bystanders & $\mathop{Gamma}(k = 1.76, \Phi = 0.57}$ \\
+Bystander \emph{torso} & 1+ bystanders & $\mathop{Gamma}(1.76, 0.57)$ \\
 \hdashline
-\multirow{3}{*}{Environment} & 1 addressee, no bystanders & $\mathop{Gamma}(k = 0.90, \Phi = 1.14}$ \\
-& 1 addressee, 1 bystander & $\mathop{Gamma}(k = 1.84, \Phi = 0.59}$ \\
-& 2+ addressee & $\mathop{Gamma}(k = 2.23, \Phi = 0.41}$ \\
+\multirow{3}{*}{Environment} & 1 addressee, no bystanders & $\mathop{Gamma}(0.90, 1.14)$ \\
+& 1 addressee, 1 bystander & $\mathop{Gamma}(1.84, 0.59)$ \\
+& 2+ addressee & $\mathop{Gamma}(2.23, 0.41)$ \\
 \hline
 \end{tabular}
 \caption{Agent's gaze fixation lengths (in seconds), expressed as gamma distributions specifying the length of fixation of a target in the given configuration of conversational roles.}
 \label{tab:GazeFootingFixationLengths}
 \end{table}
 
-Table~\ref{tab:GazeFootingSpatial} specifies the probabilities of the agent gazing at a particular target. Possible targets include: addresssees' and bystanders' faces and torso, and randomly chosen locations in the environment. These probabilities change depending on the number of participants and their footing. As the agent speaks or waits for a user to take the floor, the targets of its gaze shifts are selected by drawing from these distributions. Gaze fixation durations are determined by drawing from the gamma distributions given in Table~\ref{tab:GazeFootingFixationLengths}. Consider an example: the agent is speaking with two addressees (A and B), with two bystanders present. When the time comes to shift the agent's gaze, we use the distributions in Table~\ref{tab:GazeFootingSpatial} to determine the target of the gaze shift. The probability of looking at addressee A's face is $52\% / 2 = 26\%$ (Table~\ref{tab:GazeFootingSpatial}, second row); let us assume this is the target we have chosen by randomly drawing from the distribution. Next, we need to determine how long to fixate the gaze on addressee A's face. We generate the fixation length by drawing from the distribution $\mathop{Gamma}(k = 1.48, \Phi = 1.10$ (Table~\ref{tab:GazeFootingFixationLengths}, third row).
+Table~\ref{tab:GazeFootingSpatial} specifies the probabilities of the agent gazing at a particular target. Possible targets include: addresssees' and bystanders' faces and torso, and randomly chosen locations in the environment. These probabilities change depending on the number of participants and their footing. As the agent speaks or waits for a user to take the floor, the targets of its gaze shifts are selected by drawing from these distributions. Gaze fixation durations are determined by drawing from the gamma distributions given in Table~\ref{tab:GazeFootingFixationLengths}. Consider an example: the agent is speaking with two addressees (A and B), with two bystanders present. When the time comes to shift the agent's gaze, we use the distributions in Table~\ref{tab:GazeFootingSpatial} to determine the target of the gaze shift. The probability of looking at addressee A's face is $52\% / 2 = 26\%$ (Table~\ref{tab:GazeFootingSpatial}, second row); let us assume this is the target we have chosen by randomly drawing from the distribution. Next, we need to determine how long to fixate the gaze on addressee A's face. We generate the fixation length by drawing from the distribution $\mathop{Gamma}(k = 1.48, \Phi = 1.10)$ (Table~\ref{tab:GazeFootingFixationLengths}, third row).
 
 The agent uses the gaze patterns for footing while it is speaking or while waiting for a user to speak (i.e., after releasing the floor.) It also uses several other patterns that override those. Firstly, when beginning a speech utterance, the agent always looks into the face of the addressee; if there are multiple addressees, the agent randomly chooses between them. Secondly, at the end of the utterance, the agent always looks back at the addressee's face as it released the floor to them. Thirdly, while a user is speaking, the agent is always looking at their face, with frequent gaze aversions generated using the Eyes Alive model~\citep{lee2002eyes}.
