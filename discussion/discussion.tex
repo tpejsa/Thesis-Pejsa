@@ -3,3 +3,41 @@
 
 \chapter{Discussion}
 \label{cha:Discussion}
+
+Reiterate what the problem was
+
+Explain what we have done to solve it
+Reiterate the contributions
+
+Applications
+
+Animating the gaze of virtual characters in interactive applications: game characters, avatars, embodied conversational agents
+Building better conversational behaviors for virtual agents, especially in nascent virtual and mixed reality media
+Assisting in production of gaze animation in non-interactive contexts, such as game cutscenes or television and film animation
+- Automatically adding eye animation to captured body motions
+- Enabling convenient authoring and editing of gaze animation by novices
+- Laborsaving tool for experienced animators to give them a starting point for gaze animation editing
+
+Future directions
+
+Supporting expressive gaze behaviors:
+Does not support all types of gaze movements: smooth pursuit, probabilistic saccades, minor movements such as tremors
+Not an exhaustive simulation of human gaze
+Output of the gaze shift model is relatively predictable and lacks expressiveness in head and body movements as well as eye movements
+Gaze authoring - less of a problem, much of the expressiveness is already encoded in the body motion
+In a way, this is a necessary concession to generality - rich patterns found in human gaze are very context-dependent, e.g., gaze aversions and referential gaze that occur in coordination with cognition and speech production
+Explore integration with high-level gaze models to enrich the output in specific scenarios
+The gaze mechanisms proposed in Chapter~\ref{cha:GazeFooting} are a step in that direction, unique in that they represent a represent a first high-level gaze model designed to produce and utilize body orientation cues
+
+Nonverbal behaviors for virtual agents in multiparty interactions:
+The work in that chapter is notable in that it is a first step in the direction of providing nonverbal behaviors allowing virtual agents to manage multiparty interactions, and the first work to give empirical evidence of the importance of such behaviors for virtual agent interaction in immersive VR
+Points to interesting research directions:
+- Build virtual agent systems that can effectively engage with users in multiparty interactions; use information about user engagement intent, attention, and environment layout, in combination with agent's movement, reorientation, and gaze cuing capabilities to: establish and reconfigure conversational formations that make optimal use of available space; maximize users' comfort level using gaze and proxemics; manage conversational footing to optimize users' level of participation and sustain their interest; manage turn-taking to avoid ambiguities and breakdowns in communication
+- Underscores the importance of user sensing to make inferences about their intents in order to avoid communication failures and keep them engaged; will need to take better advantage of sensing capabilities afforded by modern VR devices; in particular, understanding user attention from their gaze direction and body orientation
+
+Authoring attending behaviors:
+Many ways to make the authoring approach more effective:
+- Provide a better starting point by improving inference, by making use of eye tracking data...
+- Current gaze editing approach is not very computationally efficient due to its head and torso alignment parametrization and the feed-forward gaze shift model; alternate parametrization and motion synthesis approaches would need to be explored to provide truly interactive editing
+- Current approach is also focusing only on eye, head, and torso movements, but not whole-body orientation; editing whole-body orientation would be challenging since it would require editing the underlying body motion, which involves root movements and complex patterns of end-effector constraints; existing methods such as motion path editing may provide a good starting point
+- Combine with ideas of from Chapter~\ref{cha:GazeFooting} to obtain a model for automated synthesis of conversational behaviors for crowds; the idea of modeling crowd behavior as a set of conversational formations that can be edited or generated automatically has not been explored

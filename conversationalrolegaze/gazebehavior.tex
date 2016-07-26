@@ -11,7 +11,7 @@ The current work considers multiparty interaction centered on a virtual agent, w
 \label{fig:FTorsoAlign}
 \end{figure}
 
-To implement these behaviors, we use our gaze shift model (Chapter~\ref{cha:GazeShiftModel}) to execute the body orientation shifts. When the first user approaches the agent, the agent performs a gaze shift toward the user with the head, torso, and whole-body alignment parameters all set to 1 ($\alpha_H = alpha_T = alpha_B = 1$). This results in the agent facing the user head-on. If users are already present in the interaction, the agent must perform a gaze shift toward the new user that evenly distributes its body orientation among all the users. We set $\alpha_H = 1$ and $\alpha_B = 1$ as before, whereas $\alpha_T$ must be set such that the agent ends up oriented toward the midpoint between the leftmost and rightmost user. The procedure for computing $\alpha_T$ is as follows (Figure~\ref{fig:FTorsoAlign}). Let us define the following direction vectors:
+To implement these behaviors, we use our gaze shift model (Chapter~\ref{cha:GazeShiftModel}) to execute the body orientation shifts. When the first user approaches the agent, the agent performs a gaze shift toward the user with the head, torso, and whole-body alignment parameters all set to 1 ($\alpha_H = \alpha_T = \alpha_B = 1$). This results in the agent facing the user head-on. If users are already present in the interaction, the agent must perform a gaze shift toward the new user that evenly distributes its body orientation among all the users. We set $\alpha_H = 1$ and $\alpha_B = 1$ as before, whereas $\alpha_T$ must be set such that the agent ends up oriented toward the midpoint between the leftmost and rightmost user. The procedure for computing $\alpha_T$ is as follows (Figure~\ref{fig:FTorsoAlign}). Let us define the following direction vectors:
 
 \begin{enumerate}
 \item $\mathbf{v}_S$ -- Current torso facing direction of the agent.
@@ -30,7 +30,9 @@ All direction vectors are projected onto the horizontal plane. The agent must re
 
 \subsection{Gaze Patterns for Footing}
 
-~\citet{mutlu2012conversational} report probability distributions of participants' gaze among each other and the environment. We implement the agent's gaze patterns based on their data. In our implementation, participants distribute their gaze roughly equally among each other and only occasionally glance at bystanders---individuals who are listening in on the interaction without being a part of it. They alternate between making eye contact, looking at the other person's torso, or looking at a spot in the environment. Frequent gaze aversions toward the torso and the environment serve the purpose of intimacy regulation---staring into another person's eyes for long periods of time is known to cause discomfort~\citep{argyle1976gaze}.
+We implement gaze patterns for signaling footing based on~\citet{mutlu2012conversational}, who report probability distributions of participants' gaze among each other and the environment in scenarios with one addressee, two addressees, and one addressee with one bystander. According to their data, when there is a single addressee, the participants tend to spend only 26\% of the time looking at the addressee's face (making eye contact), while the rest of the time they avert their gaze toward the addressee's torso and the environment. The gaze aversions serve the purpose of intimacy regulation---eye contact is an arousal stimulus and staring into another person's eyes for long periods of time is known to cause discomfort~\citep{argyle1976gaze}. When a second addressee is present, the amount of gaze toward each addressee's face remains in the neighborhood of 26\%, but there is much less torso-directed gaze. This is likely because switching gaze among the addressees now also serves the purpose of intimacy regulation, so there is less need to gaze at the torso. Finally, if a bystander is present, participants only gaze at them 5\% of the time, or one fifth of addressee gaze amount.
+
+In our implementation of footing-signalling gaze patterns for virtual agents, we extrapolate the findings by~\citet{mutlu2012conversational} to support larger groups of addressees and bystanders. We define a discrete probability distribution over the set of gaze targets, which includes the faces and torso of all the addressees and bystanders, as well as the environment. The distribution is characterized by a probability mass function $p_T = p(T, N_A, N_B)$ (Table~\ref{tab:GazeFootingSpatial}), which specifies the probability of looking at the candidate target $T$ (addressee face or torso, bystander face or torso, or the environment) given the current configuration of user footing, consisting of $N_A$ addressees and $N_B$ bystanders. As the agent speaks or waits for a user to take the floor, it continually shifts its gaze between targets, which are chosen by drawing from $p_T$ (Table~\ref{tab:GazeFootingSpatial}). The temporal duration of each gaze fixation is then determined by drawing from a set of gamma distributions given in Table~\ref{tab:GazeFootingFixationLengths}.
 
 \begin{table}
 \centering
@@ -39,27 +41,27 @@ All direction vectors are projected onto the horizontal plane. The agent must re
 \hline
 \textbf{Gaze Target} & \textbf{Footing Configuration} & \textbf{Gaze Probability} \\
 \hline
-\multirow{2}{*}{Addressee \emph{face}} & 1 addressee & 26\% \\
-& 2+ addressees & 52\% / \# addressees \\
+\multirow{2}{*}{Addressee \emph{face}} & $N_A = 1$ & 26\% \\
+& $N_A \geq 2$ & $54\%/N_A$ \\
 \hdashline
-\multirow{2}{*}{Addressee \emph{torso}} & 1 addressee & 48\% \\
-& 2+ addressees & 16\% / \# addressees \\
+\multirow{2}{*}{Addressee \emph{torso}} & $N_A = 1$ & 48\% \\
+& $N_A \geq 2$ & $16\%/N_A$ \\
 \hdashline
-\multirow{2}{*}{Bystander \emph{face}} & 1 bystander & 5\% \\
-& 2+ bystanders & 8\% / \# bystanders \\
+\multirow{2}{*}{Bystander \emph{face}} & $N_B = 1$ & 5\% \\
+& $N_B \geq 2$ & $8\%/N_B$ \\
 \hdashline
-\multirow{2}{*}{Bystander \emph{torso}} & 1 bystander & 3\% \\
-& 2+ bystanders & 5\% / \# bystanders \\
+\multirow{2}{*}{Bystander \emph{torso}} & $N_B = 1$ & 3\% \\
+& $N_B \geq 2$ & $5\%/N_B$ \\
 \hdashline
-\multirow{6}{*}{Environment} & 1 addressee, no bystanders & 26\% \\
-& 1 addressee, 1 bystander & 18\% \\
-& 1 addressee, 2+ bystanders & 13\% \\
-& 2+ addressees, no bystanders & 32\% \\
-& 2+ addressees, 1 bystander & 26\% \\
-& 2+ addressees, 2+ bystanders & 19\% \\
+\multirow{6}{*}{Environment} & $N_A = 1$, $N_B = 0$ & 26\% \\
+& $N_A = 1$, $N_B = 1$ & 18\% \\
+& $N_A = 1$, $N_B \geq 2$ & 13\% \\
+& $N_A \geq 2$, $N_B = 0$ & 30\% \\
+& $N_A \geq 2$, $N_B = 1$ & 24\% \\
+& $N_A \geq 2$, $N_B \geq 2$ & 17\% \\
 \hline
 \end{tabular}
-\caption{Spatial distributions of the agent's gaze while speaking or waiting for user speech, expressed as probability of looking at a target in the given configuration of conversational roles.}
+\caption{Spatial probability distribution of the agent's gaze while speaking or waiting for user speech, expressed as probability of looking at a target in the given configuration of conversational roles. $N_A$ is the number of addressees, while $N_B$ is the number of bystanders.}
 \label{tab:GazeFootingSpatial}
 \end{table}
 
@@ -70,27 +72,33 @@ All direction vectors are projected onto the horizontal plane. The agent must re
 \hline
 \textbf{Gaze Target} & \textbf{Footing Configuration} & \textbf{Fixation Length} \\
 \hline
-\multirow{3}{*}{Addressee \emph{face}} & 1 addressee, no bystanders & $\mathop{Gamma}(1.65, 0.56)$ \\
-& 1 addressee, 1 bystander & $\mathop{Gamma}(0.74, 1.55)$ \\
-& 2+ addressee & $\mathop{Gamma}(1.48, 1.10)$ \\
+\multirow{3}{*}{Addressee \emph{face}} & $N_A = 1$, $N_B = 0$ & $\mathop{Gamma}(1.65, 0.56)$ \\
+& $N_A = 1$, $N_B = 1$ & $\mathop{Gamma}(0.74, 1.55)$ \\
+& $N_A \geq 2$ & $\mathop{Gamma}(1.48, 1.10)$ \\
 \hdashline
-\multirow{3}{*}{Addressee \emph{torso}} & 1 addressee, no bystanders & $\mathop{Gamma}(1.92, 0.84)$ \\
-& 1 addressee, 1 bystander & $\mathop{Gamma}(1.72, 1.20)$ \\
-& 2+ addressee & $\mathop{Gamma}(1.92, 0.52)$ \\
+\multirow{3}{*}{Addressee \emph{torso}} & $N_A = 1$, $N_B = 0$ & $\mathop{Gamma}(1.92, 0.84)$ \\
+& $N_A = 1$, $N_B = 1$ & $\mathop{Gamma}(1.72, 1.20)$ \\
+& $N_A \geq 2$ & $\mathop{Gamma}(1.92, 0.52)$ \\
 \hdashline
-Bystander \emph{face} & 1+ bystanders & $\mathop{Gamma}(2.19, 0.44)$ \\
+Bystander \emph{face} & $N_B \geq 1$ & $\mathop{Gamma}(2.19, 0.44)$ \\
 \hdashline
-Bystander \emph{torso} & 1+ bystanders & $\mathop{Gamma}(1.76, 0.57)$ \\
+Bystander \emph{torso} & $N_B \geq 1$ & $\mathop{Gamma}(1.76, 0.57)$ \\
 \hdashline
-\multirow{3}{*}{Environment} & 1 addressee, no bystanders & $\mathop{Gamma}(0.90, 1.14)$ \\
-& 1 addressee, 1 bystander & $\mathop{Gamma}(1.84, 0.59)$ \\
-& 2+ addressee & $\mathop{Gamma}(2.23, 0.41)$ \\
+\multirow{3}{*}{Environment} & $N_A = 1$, $N_B = 0$ & $\mathop{Gamma}(0.90, 1.14)$ \\
+& $N_A = 1$, $N_B = 1$ & $\mathop{Gamma}(1.84, 0.59)$ \\
+& $N_A \geq 2$ & $\mathop{Gamma}(2.23, 0.41)$ \\
 \hline
 \end{tabular}
 \caption{Agent's gaze fixation lengths (in seconds), expressed as gamma distributions specifying the length of fixation of a target in the given configuration of conversational roles.}
 \label{tab:GazeFootingFixationLengths}
 \end{table}
 
-Table~\ref{tab:GazeFootingSpatial} specifies the probabilities of the agent gazing at a particular target. Possible targets include: addresssees' and bystanders' faces and torso, and randomly chosen locations in the environment. These probabilities change depending on the number of participants and their footing. As the agent speaks or waits for a user to take the floor, the targets of its gaze shifts are selected by drawing from these distributions. Gaze fixation durations are determined by drawing from the gamma distributions given in Table~\ref{tab:GazeFootingFixationLengths}. Consider an example: the agent is speaking with two addressees (A and B), with two bystanders present. When the time comes to shift the agent's gaze, we use the distributions in Table~\ref{tab:GazeFootingSpatial} to determine the target of the gaze shift. The probability of looking at addressee A's face is $52\% / 2 = 26\%$ (Table~\ref{tab:GazeFootingSpatial}, second row); let us assume this is the target we have chosen by randomly drawing from the distribution. Next, we need to determine how long to fixate the gaze on addressee A's face. We generate the fixation length by drawing from the distribution $\mathop{Gamma}(k = 1.48, \Phi = 1.10)$ (Table~\ref{tab:GazeFootingFixationLengths}, third row).
+Consider an example: the agent is speaking with two addressees ($N_A = 2$) called  Alice and Bob, with two bystanders present ($N_B = 2$). When the time comes to shift the agent's gaze, we draw from the spatial probability distribution to determine the target of the gaze shift. According to Table~\ref{tab:GazeFootingSpatial}, the probability of looking at Alice's face is $54\% / 2 = 27\%$ (second row); let us assume this is the target we have chosen by randomly drawing from the distribution. Next, we need to determine how long to fixate the gaze on Alice's face. We generate the fixation length by drawing from the distribution $\mathop{Gamma}(k = 1.48, \Phi = 1.10)$ (Table~\ref{tab:GazeFootingFixationLengths}, third row).
 
-The agent uses the gaze patterns for footing while it is speaking or while waiting for a user to speak (i.e., after releasing the floor.) It also uses several other patterns that override those. Firstly, when beginning a speech utterance, the agent always looks into the face of the addressee; if there are multiple addressees, the agent randomly chooses between them. Secondly, at the end of the utterance, the agent always looks back at the addressee's face as it released the floor to them. Thirdly, while a user is speaking, the agent is always looking at their face, with frequent gaze aversions generated using the Eyes Alive model~\citep{lee2002eyes}.
+Since~\citet{mutlu2012conversational} only provide data for interactions with two addressees or one addressee and one bystander, we had to extrapolate gaze probabilities to 3+ addressees and 2+ bystanders. Our extrapolated distribution is based on the idea that the total probability of the agent looking at addressees is a constant 70\%. This probability is then equally divided among individual addressees, so if $N_A = 3$, the probability of looking at any one addressee is 23\%. The latter probability is the sum of probabilities of looking at the addressee's face (18\%) versus their torso (5\%). It implicitly follows from Table~\ref{tab:GazeFootingSpatial} that the ratio of face and torso probabilities is also constant. By the same token, we extrapolate the probabilities of looking at bystanders. If we have 2+ bystanders, the total probability of looking at them is a constant 13\%, which gets equally divided among them.
+
+One question we have not touched upon is: what happens when the gaze target is in the environment? The probability distribution in Table~\ref{tab:GazeFootingSpatial} tells us the probability of looking at \emph{any} location in the environment, but it does not tell us \emph{what} that location is. We use a procedure inspired by~\citep{mutlu2012conversational} to determine the target location $\mathbf{p}_E$ in the environment. First, we predefine a set of $n$ target locations around each user---typically located to their left, right, and front (at their feet). We label these locations $\mathbf{p}_{E,i}$, where $i = [1..n]$. If by drawing from the spatial probability distribution we have determined that the agent's next gaze target is in the environment, we choose among the $n$ candidate locations around the \emph{currently gazed-at user} with uniform probability. Let us assume we have chosen the $k$-th location. We determine the exact 3D position $\mathbf{p}_E$ by drawing from a clipped, spherical normal distribution centered on $\mathbf{p}_{E,k}$: $\mathbf{p}_E = \mathbf{p}_{E,k} + N(0, \sigma = R/2)$. $R$ is the radius of the sphere around $\mathbf{p}_{E,i}$ to which the normal distribution is clipped---we set this to 37 cm in our implementation.
+
+\subsection{Other Gaze Cues}
+
+The agent uses the gaze patterns for footing while it is speaking or while waiting for a user to speak (i.e., after releasing the floor.) It also uses several other patterns that complement or override those. Firstly, when beginning a speech utterance, the agent always looks into the face of the addressee; if there are multiple addressees, the agent randomly chooses between them. Secondly, at the end of the utterance, the agent always looks back at the addressee's face as it releases the floor to them. Thirdly, while a user is speaking, the agent is always looking at their face, with frequent gaze aversions generated using the Eyes Alive model~\citep{lee2002eyes}. 

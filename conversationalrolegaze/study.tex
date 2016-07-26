@@ -1,4 +1,4 @@
-Having designed and implemented our gaze behaviors, we conducted a study with human participants, which aimed to answer the following research question: ``Can a virtual agent use its nonverbal cues---gaze and body orientation---to shape the footing of participants in multiparty interactions in a virtual environment?'' In our study, we had human participants engage in short, 10-minute conversations with a virtual agent and a simulated, avatar-embodied confederate. The participants would either experience the conversation on a 2D display or they would be immersed in the virtual environment using a VR headset. The virtual agent displayed gaze patterns and body orientation shifts that would either include the participant as an addressee or exclude them as a bystander. Our primary goal was to show that the participant would conform to the conversational role signaled by the agent's footing cues---e.g., when assigned the role of bystander, the participant would converse less with the agent. Our secondary goal was to show that these effects would be augmented in a virtual reality setting, where participants would have a better spatial awareness of their conversational partners' nonverbal cues.
+Having designed and implemented our gaze behaviors, we conducted a study with human participants, which aimed to answer the following research question: ``Can a virtual agent use its nonverbal cues---gaze and body orientation---to shape the footing of participants in multiparty interactions in a virtual environment?'' In our study, we had human participants engage in short, 10-minute conversations with a virtual agent and a simulated, avatar-embodied confederate. The participants would either experience the conversation on a 2D display or they would be immersed in the virtual environment using a VR headset (Oculus Rift). The virtual agent displayed gaze patterns and body orientation shifts that would either include the participant as an addressee or exclude them as a bystander. Our primary goal was to show that the participant would conform to the conversational role signaled by the agent's footing cues---e.g., when assigned the role of bystander, the participant would converse less with the agent. Our secondary goal was to show that these effects would be augmented in a virtual reality setting, where participants would have a better spatial awareness of their conversational partners' nonverbal cues.
 
 \subsection{Hypotheses}
 
@@ -12,6 +12,8 @@ We designed a study to test the following hypotheses:
 \item The agent's footing cues will have a stronger effect on the participants' subjective perceptions of the agent (Hypothesis 2) in the VR setting than when using a 2D display.
 \item The agent's footing cues will have a stronger effect on the participants' feelings of groupness and closeness (Hypothesis 3) in the VR setting than when using a 2D display.
 \end{enumerate}
+
+Hypotheses 4-6 are motivated by the fact that the use of immersive VR brings about heightened awareness of the agent's nonverbal cues, partly because it blocks out external visual stimuli, but also because the Rift's high field of view (110$^\circ$) affords a much better view of the agent, confederate, and environment than what is possible on a 2D screen. Furthermore, the head tracking capabilities allow more intuitive control over the viewpoint than the traditional mouse-look interface, making it quicker for the participant to reorient their viewpoint toward the agent when the latter says or does something important.
 
 \subsection{Design}
 
@@ -34,13 +36,13 @@ Figure~\ref{fig:GazeFootingConditions} illustrates the agent behavior manipulati
 The other independent variable, task setting, had the following levels:
 
 \begin{enumerate}
-\item \emph{2D Display} -- The participant experienced the interaction on a 27'' Dell monitor, at 2560x1440 resolution and 50$^\circ$ field of view, while using the mouse to control the viewpoint.
+\item \emph{2D display} -- The participant experienced the interaction on a 27'' Dell monitor, at 2560x1440 resolution and 50$^\circ$ field of view, while using the mouse to control the viewpoint.
 \item \emph{VR} -- The participant wore a VR headset (Oculus Rift CV1). They saw the scene at the resolution of 1080x1200 per eye, with a 110$^\circ$ field of view. Built-in head orientation tracking and the external positional tracker allowed the participant to control the viewpoint by moving their head.
 \end{enumerate}
 
-The screenshots in Figure~\ref{fig:GazeFootingConditions} are both from the \emph{2D Display} condition. The use of the Oculus Rift in the \emph{VR} condition afforded a much higher field of view and more natural control over the viewpoint, allowing the participant to easily see both the agent and the confederate simultaneously, as well as shift their gaze from one to the other by simply moving their head.
+The screenshots in Figure~\ref{fig:GazeFootingConditions} are both from the \emph{2D display} condition. The use of the Oculus Rift in the \emph{VR} condition afforded a much higher field of view and more natural control over the viewpoint, allowing the participant to easily see both the agent and the confederate simultaneously, as well as shift their gaze from one to the other by simply moving their head.
 
-Since the study had a within-participants factor, we implemented two versions of the task to minimize transfer effects. The tasks were identical in structure and duration, and they had similar content. The participants were assigned to conditions in stratified order, counterbalanced with respect to task setting (\emph{2D Display} or \emph{VR}) and task version (\emph{Task 1} or \emph{Task 2}).
+Since the study had a within-participants factor, we implemented two versions of the task to minimize transfer effects. The tasks were identical in structure and duration, and they had similar content. The participants were assigned to conditions in stratified order, counterbalanced with respect to task setting (\emph{2D display} or \emph{VR}) and task version (\emph{Task 1} or \emph{Task 2}).
 
 \subsection{Task}
 
@@ -59,7 +61,7 @@ The confederate was simulated and its behavior was scripted. At the end of the a
 
 \subsubsection{Setup}
 
-The physical setup of the task is shown in Figure~\ref{fig:GazeFootingTask}, right. Participants were seated in an office chair in front of a personal computer while wearing an audio headset (in the \emph{2D Display} condition) or Oculus Rift (in the \emph{VR} condition). A video camera was set up to record their behavior.
+The physical setup of the task is shown in Figure~\ref{fig:GazeFootingTask}, right. Participants were seated in an office chair in front of a personal computer while wearing an audio headset (in the \emph{2D display} condition) or Oculus Rift (in the \emph{VR} condition). A video camera was set up to record their behavior.
 
 \subsubsection{Implementation}
 
@@ -82,12 +84,14 @@ Our experiment involved two behavioral and several subjective measures. The beha
 \item \emph{Total speaking time} -- Cumulative length (in seconds) of the participant's speaking utterances over the course of the interaction.
 \end{enumerate}
 
+When calculating the behavioral measures, we excluded participants' responses to the first five questions (out of twenty-five total) to allow for acclimation.
+
 The subjective measures were collected using the subjective questionnaire and consisted of seven-point scale items. The measures were the following:
- 
+
 \begin{enumerate}
 \item To measure the agent's likeability, we had participants rate the agent on traits such as likeability, cuteness, and friendliness. From this data we constructed a scale consisting of two factors: \emph{likeability} (two items, Cronbach's $\alpha = 0.824$) and \emph{attractiveness} (three items, Cronbach's $\alpha = 0.929$).
 \item Feelings of \emph{closeness} to the agent were measured using a four-item scale (Cronbach's $\alpha = 0.823$) adapted from~\citep{aron1992inclusion}, which had participants indicate their agreement with statements such as: ``The agent paid attention to me.''
-\item Groupness was measured using a scale adapted from~\citep{williams2000cyberostracism}, which consistent of seven items (Cronbach's $\alpha = 0.827$) and had participants indicate their agreement with statements such as: ``I felt ignored or excluded by the group.''
+\item Groupness was measured using a scale adapted from~\citep{williams2000cyberostracism}, which consisted of seven items (Cronbach's $\alpha = 0.827$) and had participants indicate their agreement with statements such as: ``I felt ignored or excluded by the group.''
 \end{enumerate}
 
 Our questionnaire also included two checks for the agent behavior manipulation (also seven-point items): (1) ``The agent faced me during the interaction'' and (2) ``The agent faced the other participant.''
@@ -96,14 +100,23 @@ Our questionnaire also included two checks for the agent behavior manipulation (
 
 Having collected our data, we first performed an analysis of variance (ANOVA) on the manipulation checks. We found no significant effects of the agent behavior manipulation on either check, $F(1, 61) = 1.931, p = .170$ and $F(1, 62) = 2.703, p = .105$. We believe this is due to ambiguous wording of the questions, as well as the use of a seven-point scale. It may not have been clear to our participants if ``facing'' referred to body facing or the amount of gaze. In either case, there is no clear mapping from a seven-point scale to either of these quantities, which is likely to have contributed to the ambiguous and noisy check results.
 
-\subsubsection{Behavioral Measures}
+Additionally, we confirmed that \emph{task version} had no significant effect on any of our behavioral or subjective measures, suggesting the two tasks were sufficiently similar for our purposes.
+
+\subsubsection{Behavioral}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.95\textwidth]{conversationalrolegaze/Figures/ResultsBehavioral.pdf}
+\caption{Results from behavioral measures. Left: number of speaking turns (top) and total speaking time (bottom) by agent behavior (\emph{exclusive} vs. \emph{inclusive}). Right: same measures by agent behavior and task setting (\emph{2D display} vs. \emph{VR})}.
+\label{fig:GazeFootingResultsBehavioral}
+\end{figure}
 
 Next, we calculated descriptive statistics for our behavioral measures. As shown in Figure~\ref{fig:GazeFootingResultsBehavioral}, left, when the agent exhibited \emph{inclusive} behavior, the participants took on average 7 speaking turns ($M = 7.250, SD = 2.962$) and spoke for a total of 46 seconds ($M = 46.196, SD = 56.17$), whereas they took between 5 and 6 speaking turns ($M = 5.531, SD = 3.360$) and spoke for 33 seconds ($M = 32.728, SD = 42.610$) when the agent's behavior was \emph{exclusive}. Breaking down these results further by task setting, we found that participants' number of turns taken and total speaking times were as follows (Figure~\ref{fig:GazeFootingResultsBehavioral}, right):
 
 \begin{itemize}
-\item \emph{Exclusive} agent behavior, \emph{2D Display} task setting: number of speaking turns taken $M = 5.375, SD = 3.612$, total speaking time $M = 34.865, SD = 44.818$
+\item \emph{Exclusive} agent behavior, \emph{2D display} task setting: number of speaking turns taken $M = 5.375, SD = 3.612$, total speaking time $M = 34.865, SD = 44.818$
 \item \emph{Exclusive} agent behavior, \emph{VR} task setting: number of speaking turns taken $M = 5.688, SD = 3.198$, total speaking time $M = 30.725, SD = 41.806$
-\item \emph{Inclusive} agent behavior, \emph{2D Display} task setting: number of speaking turns taken $M = 6.125, SD = 2.419$, total speaking time $M = 25.455, SD = 19.918$
+\item \emph{Inclusive} agent behavior, \emph{2D display} task setting: number of speaking turns taken $M = 6.125, SD = 2.419$, total speaking time $M = 25.455, SD = 19.918$
 \item \emph{Inclusive} agent behavior, \emph{VR} task setting: number of speaking turns taken $M = 8.375, SD = 3.096$, total speaking time $M = 66.936, SD = 72.160$
 \end{itemize}
 
@@ -117,23 +130,21 @@ We found no interactions between agent behavior and task setting on the \emph{nu
 
 To analyze the subjective measures, we performed a two-way ANOVA. Our analysis only found a marginal main effect of agent behavior on the agent's \emph{attractiveness} ($F(1, 60) = 3.249, p = .077$), but otherwise no main effects of agent behavior were found on any of our subjective measures: \emph{likeability} ($F(1, 60) = 0.598, p = .598$), \emph{closeness} ($F(1, 60) = 0.796, p = .376$), or \emph{groupness} ($F(1, 60) = 0.236, p = .629$). We also found no significant interactions of agent behavior and task setting on any of the subjective measures: \emph{likeability} ($F(1, 60) = 0.438, p = .511$), \emph{attractiveness} ($F(1, 60) = 0.156, p = .695$), \emph{closeness} ($F(1, 60) = 0.063, p = .803$), \emph{groupness} $(F(1, 60) = 0.027, p = .869$). Hypotheses 2-3 and 5-6 are not supported by these results.
 
-Post-hoc analyses revealed a significant, cross-over interaction between agent behavior and gender on the \emph{likeability} measure, $F(1, 60) = 5.885, p = .0183$ (Figure~\ref{fig:GazeFootingSubjectiveGender}, left). A pairwise comparison shows that male participants rate the agent exhibiting inclusive behavior significantly higher than when exhibiting exclusive behavior ($F(1, 60) = 5.561, p = .0216$)---this lends partial support to Hypothesis 2, but only for male participants. We also found a significant interaction of agent behavior and gender on the \emph{groupness} measure, $F(1, 60) = 4.988, p = .0293$ (Figure~\ref{fig:GazeFootingSubjectiveGender}, right). Female participants assigned marginally higher groupness ratings to the agent exhibiting inclusive behavior than the one displaying exclusive behavior, $F(1, 60) = 3.554, p = .0642$.
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth]{conversationalrolegaze/Figures/ResultsSubjectiveGender.pdf}
+\caption{Results from two subjective measures (likeability and groupness) by agent behavior (\emph{exclusive} vs. \emph{inclusive}) and participant gender.}
+\label{fig:GazeFootingSubjectiveGender}
+\end{figure}
+
+Post-hoc analyses revealed a significant, cross-over interaction between agent behavior and participant gender on the \emph{likeability} measure, $F(1, 60) = 5.885, p = .0183$ (Figure~\ref{fig:GazeFootingSubjectiveGender}, left). A pairwise comparison shows that male participants rate the agent exhibiting inclusive behavior significantly higher than when exhibiting exclusive behavior ($F(1, 60) = 5.561, p = .0216$)---this lends partial support to Hypothesis 2. We also found a significant interaction of agent behavior and gender on the \emph{groupness} measure, $F(1, 60) = 4.988, p = .0293$ (Figure~\ref{fig:GazeFootingSubjectiveGender}, right). Female participants assigned marginally higher groupness ratings to the agent exhibiting inclusive behavior than the one displaying exclusive behavior, $F(1, 60) = 3.554, p = .0642$.
 
 \subsection{Discussion}
 
-Found support for 1 and 4, meaning that the agent can shape footing and do so better in VR
+The experimental results suggest that a virtual agent can use its gaze patterns and body orientation to shape conversational footing of human users (Hypothesis 1) and can do so more effectively in virtual reality (Hypothesis 4). However, there is a comparative lack of evidence that the use of these cues improves users' subjective experiences of the interaction, other than the finding that male participants found the agent more likeable when she looked at them and faced them more (Hypothesis 2), and a marginal improvement in groupness feelings of the female participants in connection with the same manipulation (Hypothesis 6).
 
-Results not very strong, possibly due to limitations of the agent's and confederate's behavior, as well as the system's limited ability to sense the participant's behavior
-Speech recognition results lagged behind the participant's speech
-Compounded with the tendency of some participants to insert filled pauses into their speech, the agent would sometimes interpret the lack of incoming speech recognition results as floor release and cut off the participant, which had a direct effect on our behavioral measures
-If the system was sensitive to the participant's nonverbal cues such as gaze aversions (which occur during floor-holding pauses), it would be able to avoid some communication errors
-The agent's behavior is rudimentary in many ways, even their gaze behavior
-E.g., gaze aversions triggered probabilistically without regard for utterance structure
-Research has shown that gaze aversions are more likely to occur with pauses and at the boundaries of thematic and rhematic units
-Confederate behavior was largely canned, consisting only of an idle body animation, which may have been distracting for participants
+The results are not as strong as expected, possibly due to limitations of the system's capabilities and visible agent behavior. One problem that arose during data collection was that the agent would sometimes cut off the participant before they finished their utterance. The lagging of speech recognition results behind the participant's speech production, compounded with the tendency of some participants to pause between utterances, would sometimes cause the system to interpret the lack of incoming speech recognition results as floor release and cut off the participant. This would have had a direct effect on the speaking time measure and might have reduced it substantially in the \emph{inclusive} agent behavior condition.
+If the system could have tracked the participants' nonverbal cues during floor-holding pauses (e.g., gaze aversions), it would have been able to avoid such coordination errors.
+Furthermore, the effects of the agent's footing cues might have been partially confounded by the more rudimentary aspects of the agent's and confederate's behavior. For example, both the agent and confederate embodiments only had a looping body animation and displayed no body movements connected to the discourse, such as hand gestures. The simplicity of their overall behavior is arguably advantageous from an ecological standpoint, since it places focus onto the agent's gaze patterns, but it could also have seemed unnatural and distracting to participants.
 
-Relative lack of support for hypotheses about participants' subjective experiences
-other than partial support for Hypothesis 2
-
-Behavior-gender interaction effects are not unexpected
-For example, ...
+Finally, the interaction effects between the agent's behavior and participant gender were not unexpected.~\citet{mutlu2006storytelling} reported that female participants responded more negatively to increased gaze from a humanlike robot. They linked this result to~\citep{bailenson2001equilibrium}, which found that women tended to maintain greater interpersonal distance than men from a virtual agent displaying increased mutual gaze. Since participants in our experiment had limited control over their position in the scene (they could lean forward and back, but not step away from the agent), high mutual gaze from the agent might have produced negative effects in female participants.

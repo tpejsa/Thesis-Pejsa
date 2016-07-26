@@ -11,111 +11,120 @@
 \contentsline {subsection}{Low-level Gaze Models}{11}{section*.11}
 \contentsline {subsection}{High-level Gaze Models}{13}{section*.12}
 \contentsline {section}{\numberline {2.4}Animating Stylized Characters}{16}{section.2.4}
-\contentsline {chapter}{\chapternumberline {3}Gaze Shift Synthesis}{18}{chapter.3}
-\contentsline {section}{\numberline {3.1}Introduction}{18}{section.3.1}
-\contentsline {section}{\numberline {3.2}Gaze Shift Model}{19}{section.3.2}
-\contentsline {subsection}{Pose Parametrization}{20}{section*.13}
-\contentsline {subsubsection}{Solving for the Head Pose}{21}{section*.14}
-\contentsline {subsubsection}{Solving for the Torso Pose}{22}{section*.15}
-\contentsline {subsection}{Eye Movements}{23}{section*.16}
-\contentsline {subsection}{Eye-Head Movements}{25}{section*.17}
-\contentsline {subsubsection}{Computing OMR}{26}{section*.18}
-\contentsline {subsubsection}{Head Latency}{27}{section*.19}
-\contentsline {subsection}{Upper-Body Movements}{27}{section*.20}
-\contentsline {subsubsection}{Torso Latency}{29}{section*.21}
-\contentsline {subsection}{Whole-Body Movements}{30}{section*.22}
-\contentsline {subsection}{Animating the Gaze Shift}{30}{section*.23}
-\contentsline {subsubsection}{Computing Target Directions}{31}{section*.24}
-\contentsline {subsubsection}{The Animation Loop}{33}{section*.25}
-\contentsline {subsection}{Secondary Gaze Movements}{35}{section*.26}
-\contentsline {section}{\numberline {3.3}Evaluation: Gaze Accuracy}{36}{section.3.3}
-\contentsline {subsection}{Setup and Task}{36}{section*.27}
-\contentsline {subsection}{Study Design}{37}{section*.28}
-\contentsline {subsection}{Procedure}{38}{section*.29}
-\contentsline {subsection}{Participants}{39}{section*.30}
-\contentsline {subsection}{Measures}{39}{section*.31}
-\contentsline {subsection}{Results}{39}{section*.32}
-\contentsline {subsection}{Discussion}{42}{section*.33}
-\contentsline {section}{\numberline {3.4}Evaluation: Body Orientation}{43}{section.3.4}
-\contentsline {subsection}{Hypotheses}{43}{section*.34}
-\contentsline {subsection}{Participants}{44}{section*.35}
-\contentsline {subsection}{Study Design}{44}{section*.36}
-\contentsline {subsection}{Procedure}{46}{section*.37}
-\contentsline {subsection}{Measures}{46}{section*.38}
-\contentsline {subsection}{Results}{47}{section*.39}
-\contentsline {subsection}{Discussion}{47}{section*.40}
-\contentsline {section}{\numberline {3.5}Discussion}{48}{section.3.5}
-\contentsline {chapter}{\chapternumberline {4}Gaze and Footing in Virtual Agent Interaction}{50}{chapter.4}
-\contentsline {section}{\numberline {4.1}Introduction}{50}{section.4.1}
-\contentsline {section}{\numberline {4.2}Conversational Gaze Behaviors}{51}{section.4.2}
-\contentsline {subsection}{Reconfiguring the F-formation}{51}{section*.41}
-\contentsline {subsection}{Gaze Patterns for Footing}{53}{section*.42}
-\contentsline {section}{\numberline {4.3}Experiment}{55}{section.4.3}
-\contentsline {subsection}{Hypotheses}{56}{section*.43}
-\contentsline {subsection}{Design}{57}{section*.44}
-\contentsline {subsection}{Task}{59}{section*.45}
-\contentsline {subsection}{Participants}{61}{section*.46}
-\contentsline {subsection}{Procedure}{61}{section*.47}
-\contentsline {subsection}{Measures}{61}{section*.48}
-\contentsline {section}{\numberline {4.4}Discussion}{62}{section.4.4}
-\contentsline {chapter}{\chapternumberline {5}Stylized and Performative Gaze}{63}{chapter.5}
-\contentsline {section}{\numberline {5.1}Introduction}{63}{section.5.1}
-\contentsline {section}{\numberline {5.2}Artifacts on Stylized Characters}{65}{section.5.2}
-\contentsline {section}{\numberline {5.3}Gaze Adaptation}{68}{section.5.3}
-\contentsline {subsection}{Target Pose Adaptation}{68}{section*.49}
-\contentsline {subsubsection}{Cross-eyedness Removal}{69}{section*.50}
-\contentsline {subsubsection}{Eye Divergence}{70}{section*.51}
-\contentsline {subsection}{Gaze Kinematics Adaptation}{72}{section*.52}
-\contentsline {subsection}{Gaze-evoked Eye Blinks}{74}{section*.53}
-\contentsline {section}{\numberline {5.4}Performative Gaze}{76}{section.5.4}
-\contentsline {section}{\numberline {5.5}Evaluation: Artifact Reduction}{77}{section.5.5}
-\contentsline {section}{\numberline {5.6}Evaluation: Communicative Accuracy}{80}{section.5.6}
-\contentsline {subsection}{Study Design}{80}{section*.54}
-\contentsline {subsection}{Task}{81}{section*.55}
-\contentsline {subsection}{Procedure}{81}{section*.56}
-\contentsline {subsection}{Measures}{82}{section*.57}
-\contentsline {subsection}{Results}{82}{section*.58}
-\contentsline {section}{\numberline {5.7}Discussion}{84}{section.5.7}
-\contentsline {chapter}{\chapternumberline {6}Gaze Animation Authoring}{86}{chapter.6}
-\contentsline {section}{\numberline {6.1}Introduction}{86}{section.6.1}
-\contentsline {subsection}{Approach Overview}{87}{section*.59}
-\contentsline {section}{\numberline {6.2}Gaze Inference}{88}{section.6.2}
-\contentsline {subsection}{Gaze Instance Inference}{88}{section*.60}
-\contentsline {subsubsection}{Gaze Event Discovery}{90}{section*.61}
-\contentsline {subsubsection}{Motion Interval Classification}{91}{section*.62}
-\contentsline {subsubsection}{Gaze Instance Generation}{92}{section*.63}
-\contentsline {subsection}{Gaze Target Inference}{92}{section*.64}
-\contentsline {subsubsection}{Directional term}{94}{section*.65}
-\contentsline {subsubsection}{Importance term}{95}{section*.66}
-\contentsline {subsubsection}{Hand contact term}{95}{section*.67}
-\contentsline {subsubsection}{Implementation}{96}{section*.68}
-\contentsline {subsection}{Computing Alignment Parameters}{96}{section*.69}
-\contentsline {subsection}{Evaluation}{97}{section*.70}
-\contentsline {subsubsection}{Data Collection}{97}{section*.71}
-\contentsline {subsubsection}{Results: Gaze Instances}{98}{section*.72}
-\contentsline {subsubsection}{Results: Gaze Targets}{99}{section*.73}
-\contentsline {section}{\numberline {6.3}Gaze Synthesis}{100}{section.6.3}
-\contentsline {subsection}{Synthesis of Gaze Kinematics}{100}{section*.74}
-\contentsline {subsection}{Gaze Motion Blending}{102}{section*.75}
-\contentsline {section}{\numberline {6.4}Gaze Editing}{103}{section.6.4}
-\contentsline {subsection}{Editing Operations}{103}{section*.76}
-\contentsline {subsection}{Editing Tool}{104}{section*.77}
-\contentsline {subsection}{Results}{106}{section*.78}
-\contentsline {section}{\numberline {6.5}Evaluation}{107}{section.6.5}
-\contentsline {subsection}{Authoring Effort}{108}{section*.79}
-\contentsline {subsection}{Animation Quality}{109}{section*.80}
-\contentsline {subsubsection}{Hypotheses}{109}{section*.81}
-\contentsline {subsubsection}{Design}{110}{section*.82}
-\contentsline {subsubsection}{Stimuli}{110}{section*.83}
-\contentsline {subsubsection}{Measures}{110}{section*.84}
-\contentsline {subsubsection}{Participants}{110}{section*.85}
-\contentsline {subsubsection}{Results}{111}{section*.86}
-\contentsline {subsection}{Editing Effectiveness}{113}{section*.87}
-\contentsline {subsubsection}{Design}{113}{section*.88}
-\contentsline {subsubsection}{Stimuli}{114}{section*.89}
-\contentsline {subsubsection}{Measures}{115}{section*.90}
-\contentsline {subsubsection}{Participants}{115}{section*.91}
-\contentsline {subsubsection}{Results}{115}{section*.92}
-\contentsline {section}{\numberline {6.6}Discussion}{117}{section.6.6}
-\contentsline {chapter}{\chapternumberline {7}Discussion}{119}{chapter.7}
-\contentsline {chapter}{References}{120}{section*.94}
+\contentsline {subsection}{Principles of Stylized Motion}{16}{section*.13}
+\contentsline {subsection}{Adapting Motion to Stylized Characters}{17}{section*.14}
+\contentsline {chapter}{\chapternumberline {3}Gaze Shift Synthesis}{19}{chapter.3}
+\contentsline {section}{\numberline {3.1}Introduction}{19}{section.3.1}
+\contentsline {section}{\numberline {3.2}Gaze Shift Model}{20}{section.3.2}
+\contentsline {subsection}{Pose Parametrization}{21}{section*.15}
+\contentsline {subsubsection}{Solving for the Head Pose}{22}{section*.16}
+\contentsline {subsubsection}{Solving for the Torso Pose}{23}{section*.17}
+\contentsline {subsection}{Eye Movements}{24}{section*.18}
+\contentsline {subsection}{Eye-Head Movements}{26}{section*.19}
+\contentsline {subsubsection}{Computing OMR}{27}{section*.20}
+\contentsline {subsubsection}{Head Latency}{28}{section*.21}
+\contentsline {subsection}{Upper-Body Movements}{28}{section*.22}
+\contentsline {subsubsection}{Torso Latency}{30}{section*.23}
+\contentsline {subsection}{Whole-Body Movements}{31}{section*.24}
+\contentsline {subsection}{Animating the Gaze Shift}{31}{section*.25}
+\contentsline {subsubsection}{Computing Target Directions}{32}{section*.26}
+\contentsline {subsubsection}{The Animation Loop}{34}{section*.27}
+\contentsline {subsection}{Secondary Gaze Movements}{36}{section*.28}
+\contentsline {section}{\numberline {3.3}Evaluation: Gaze Accuracy}{37}{section.3.3}
+\contentsline {subsection}{Setup and Task}{37}{section*.29}
+\contentsline {subsection}{Study Design}{38}{section*.30}
+\contentsline {subsection}{Procedure}{39}{section*.31}
+\contentsline {subsection}{Participants}{40}{section*.32}
+\contentsline {subsection}{Measures}{40}{section*.33}
+\contentsline {subsection}{Results}{40}{section*.34}
+\contentsline {subsection}{Discussion}{43}{section*.35}
+\contentsline {section}{\numberline {3.4}Evaluation: Body Orientation}{44}{section.3.4}
+\contentsline {subsection}{Hypotheses}{44}{section*.36}
+\contentsline {subsection}{Participants}{45}{section*.37}
+\contentsline {subsection}{Study Design}{45}{section*.38}
+\contentsline {subsection}{Procedure}{47}{section*.39}
+\contentsline {subsection}{Measures}{47}{section*.40}
+\contentsline {subsection}{Results}{48}{section*.41}
+\contentsline {subsection}{Discussion}{48}{section*.42}
+\contentsline {section}{\numberline {3.5}Discussion}{49}{section.3.5}
+\contentsline {chapter}{\chapternumberline {4}Gaze and Footing in Virtual Agent Interaction}{51}{chapter.4}
+\contentsline {section}{\numberline {4.1}Introduction}{51}{section.4.1}
+\contentsline {section}{\numberline {4.2}Conversational Gaze Behaviors}{52}{section.4.2}
+\contentsline {subsection}{Reconfiguring the F-formation}{52}{section*.43}
+\contentsline {subsection}{Gaze Patterns for Footing}{54}{section*.44}
+\contentsline {subsection}{Other Gaze Cues}{58}{section*.45}
+\contentsline {section}{\numberline {4.3}Experiment}{58}{section.4.3}
+\contentsline {subsection}{Hypotheses}{59}{section*.46}
+\contentsline {subsection}{Design}{60}{section*.47}
+\contentsline {subsection}{Task}{62}{section*.48}
+\contentsline {subsubsection}{Setup}{63}{section*.49}
+\contentsline {subsubsection}{Implementation}{64}{section*.50}
+\contentsline {subsection}{Participants}{64}{section*.51}
+\contentsline {subsection}{Procedure}{64}{section*.52}
+\contentsline {subsection}{Measures}{65}{section*.53}
+\contentsline {subsection}{Results}{66}{section*.54}
+\contentsline {subsubsection}{Behavioral}{66}{section*.55}
+\contentsline {subsubsection}{Subjective}{68}{section*.56}
+\contentsline {subsection}{Discussion}{69}{section*.57}
+\contentsline {section}{\numberline {4.4}Discussion}{71}{section.4.4}
+\contentsline {chapter}{\chapternumberline {5}Stylized and Performative Gaze}{72}{chapter.5}
+\contentsline {section}{\numberline {5.1}Introduction}{72}{section.5.1}
+\contentsline {section}{\numberline {5.2}Artifacts on Stylized Characters}{74}{section.5.2}
+\contentsline {section}{\numberline {5.3}Gaze Adaptation}{77}{section.5.3}
+\contentsline {subsection}{Target Pose Adaptation}{77}{section*.58}
+\contentsline {subsubsection}{Cross-eyedness Removal}{78}{section*.59}
+\contentsline {subsubsection}{Eye Divergence}{79}{section*.60}
+\contentsline {subsection}{Gaze Kinematics Adaptation}{81}{section*.61}
+\contentsline {subsection}{Gaze-evoked Eye Blinks}{83}{section*.62}
+\contentsline {section}{\numberline {5.4}Performative Gaze}{85}{section.5.4}
+\contentsline {section}{\numberline {5.5}Evaluation: Artifact Reduction}{86}{section.5.5}
+\contentsline {section}{\numberline {5.6}Evaluation: Communicative Accuracy}{89}{section.5.6}
+\contentsline {subsection}{Study Design}{89}{section*.63}
+\contentsline {subsection}{Task}{90}{section*.64}
+\contentsline {subsection}{Procedure}{90}{section*.65}
+\contentsline {subsection}{Measures}{91}{section*.66}
+\contentsline {subsection}{Results}{91}{section*.67}
+\contentsline {section}{\numberline {5.7}Discussion}{93}{section.5.7}
+\contentsline {chapter}{\chapternumberline {6}Gaze Animation Authoring}{95}{chapter.6}
+\contentsline {section}{\numberline {6.1}Introduction}{95}{section.6.1}
+\contentsline {subsection}{Approach Overview}{96}{section*.68}
+\contentsline {section}{\numberline {6.2}Gaze Inference}{97}{section.6.2}
+\contentsline {subsection}{Gaze Instance Inference}{97}{section*.69}
+\contentsline {subsubsection}{Gaze Event Discovery}{99}{section*.70}
+\contentsline {subsubsection}{Motion Interval Classification}{100}{section*.71}
+\contentsline {subsubsection}{Gaze Instance Generation}{101}{section*.72}
+\contentsline {subsection}{Gaze Target Inference}{101}{section*.73}
+\contentsline {subsubsection}{Directional term}{103}{section*.74}
+\contentsline {subsubsection}{Importance term}{104}{section*.75}
+\contentsline {subsubsection}{Hand contact term}{104}{section*.76}
+\contentsline {subsubsection}{Implementation}{105}{section*.77}
+\contentsline {subsection}{Computing Alignment Parameters}{105}{section*.78}
+\contentsline {subsection}{Evaluation}{106}{section*.79}
+\contentsline {subsubsection}{Data Collection}{106}{section*.80}
+\contentsline {subsubsection}{Results: Gaze Instances}{107}{section*.81}
+\contentsline {subsubsection}{Results: Gaze Targets}{108}{section*.82}
+\contentsline {section}{\numberline {6.3}Gaze Synthesis}{109}{section.6.3}
+\contentsline {subsection}{Synthesis of Gaze Kinematics}{109}{section*.83}
+\contentsline {subsection}{Gaze Motion Blending}{111}{section*.84}
+\contentsline {section}{\numberline {6.4}Gaze Editing}{112}{section.6.4}
+\contentsline {subsection}{Editing Operations}{112}{section*.85}
+\contentsline {subsection}{Editing Tool}{113}{section*.86}
+\contentsline {subsection}{Results}{115}{section*.87}
+\contentsline {section}{\numberline {6.5}Evaluation}{116}{section.6.5}
+\contentsline {subsection}{Authoring Effort}{117}{section*.88}
+\contentsline {subsection}{Animation Quality}{118}{section*.89}
+\contentsline {subsubsection}{Hypotheses}{118}{section*.90}
+\contentsline {subsubsection}{Design}{119}{section*.91}
+\contentsline {subsubsection}{Stimuli}{119}{section*.92}
+\contentsline {subsubsection}{Measures}{119}{section*.93}
+\contentsline {subsubsection}{Participants}{119}{section*.94}
+\contentsline {subsubsection}{Results}{120}{section*.95}
+\contentsline {subsection}{Editing Effectiveness}{122}{section*.96}
+\contentsline {subsubsection}{Design}{122}{section*.97}
+\contentsline {subsubsection}{Stimuli}{123}{section*.98}
+\contentsline {subsubsection}{Measures}{124}{section*.99}
+\contentsline {subsubsection}{Participants}{124}{section*.100}
+\contentsline {subsubsection}{Results}{124}{section*.101}
+\contentsline {section}{\numberline {6.6}Discussion}{126}{section.6.6}
+\contentsline {chapter}{\chapternumberline {7}Discussion}{128}{chapter.7}
+\contentsline {chapter}{References}{130}{section*.103}
