@@ -6,14 +6,41 @@
 
 Human attending behaviors involve movements of the eyes, head, and body, and they play a number of important communicative roles in human perception, social interaction, and cognition. The communicative effectiveness of these behaviors comes from their remarkable kinematic variability: quick eye saccades, eye-head shifts, upper-body and whole-body reorientations are movements that occur in tight coodination with one another and yield very different effects in communication. Producing convincing animation of such movements on virtual characters is a challenging problem, both in interactive and non-interactive contexts. In a non-interactive context, the challenge lies in animator skill and effort required to author such movements, due to the inherent complexity of their spatial and timing relationships. A further challenge is posed by the poor scalability of manual authoring with respect to scenario complexity, scene changes, and character design. Traditional methods used for gaze animation authoring, such as keyframing and IK, do not ensure good scalability on any of those dimensions. In an interactive context, gaze motion synthesis is accomplished by automatic methods, that can dynamically adapt to changes in scenario state and user inputs. To realize the full range of human attending behaviors, the methods must be capable of synthesizing biologically plausible, coordinated movements of the eyes, head, torso, and whole body toward targets in the environment. Moreover, the methods must afford parametric control over how these movements coordinate, such that a subtle saccade can be produced just as easily as a whole-body reorientation.
 
-This works posits that the problem of creating effective attending behaviors on animated characters in a scalable way can be solved more easily by modeling those behaviors as \emph{directed gaze}---sequences of coordinated, intentional movements of the eyes, head, torso, and the whole body toward target objects and information in the environment. To prove this thesis, we contributed several methods for synthesis and authoring of directed gaze behaviors, as well as a set of evaluations of those methods from the standpoint of their scalability and the communicative effectiveness of the resulting behaviors. The specific contributions from this work are the following:
+This works posits that the problem of creating effective attending behaviors on animated characters in a scalable way can be solved more easily by modeling those behaviors as \emph{directed gaze}---sequences of coordinated, intentional movements of the eyes, head, torso, and the whole body toward target objects and information in the environment. To prove this thesis, we contributed several methods for synthesis of directed gaze animation, a new conversational gaze mechanism for virtual agents, a workflow and tool for authoring directed gaze animation, and a set of empirical insights about directed gaze as a model for interactive and non-interactive gaze behaviors. An overview of the contributions is given in Table~\ref{tab:Contributions}.
 
-\begin{enumerate}
-\item \textbf{Gaze shift synthesis}. Chapter~\ref{cha:GazeShiftModel} has introduced a procedural, neurophysiologically model for synthesis of directed gaze shifts. The model affords parametric control over coordinated eye, head, and body movements and it simulated their spatial and timing relationships using a set of kinematic laws derived from neurophysiology research. Thus it eliminates the need to use hand-authoring or motion capture to obtain biologically plausible gaze movements. It is also the first model that can produce paramerically controllable shifts in torso and whole-body orientation. The naturalness and communicative effectiveness of the model are evaluated in two studies with human participants.
-\item \textbf{Gaze and footing in multiparty conversations with a virtual agent} Chapter~\ref{cha:GazeFooting} has sought to provide further evaluation of the communicative effectiveness of our directed gaze model, as well as motivation for the use of directed gaze behaviors on embodied conversational agents. It has enabled virtual agents engaged in multiparty interaction with avatar-embodied users to influence users' level of participation by signaling their conversational footing through gaze and body orientation cues. An experiment with human participants has shown that a virtual agent using the proposed behaviors indeed has that capability, which manifests itself specifically in high-fidelity, immersive VR.
-\item \textbf{Stylized and performative gaze}. Chapter~\ref{cha:StylizedGaze} has introduced methods for automatic adaptation of gaze movements to variations in character design and camera position, with the goal of making gaze motion synthesis methods scale better to stylized and non-human characters with exaggerated eye shape and proportions. A set of evaluations have shown that these methods allow synthesis of gaze shifts across a range of character designs, while preserving their communicative effectiveness.
-\item \textbf{Gaze animation authoring}. Chapter~\ref{cha:GazeAuthoring} has proposed an approach for scalable authoring of gaze animation in non-interactive scenarios. Given inputs consisting of a character animated using motion capture and a 3D model of the virtual scene, the proposed approach can automatically synthesize a directed gaze behavior that matches these inputs. The approach also includes methods and a tool for convenient editing of the gaze behavior. Evaluations are provided of the utility of the approach in reducing required authoring effort and skill, and producing plausible, communicatively effective gaze in a wide range of scenarios.
-\end{enumerate}
+\begin{table}
+\small
+\centering
+\def\arraystretch{1.5}
+\begin{tabularx}{\textwidth}{lp{10.8cm}r}
+\hline
+\textbf{Category} & \textbf{Contribution} & \textbf{Chapter} \\
+\hline
+\multirow{5}{*}{Technical} & Gaze shift synthesis model & \ref{cha:GazeShiftModel} \\
+& Stylized gaze & \ref{cha:StylizedGaze} \\
+& Performative gaze & \ref{cha:StylizedGaze} \\
+& Gaze inference from body motion & \ref{cha:GazeAuthoring} \\
+& Gaze motion layering & \ref{cha:GazeAuthoring} \\
+\hdashline
+\multirow{3}{*}{Design} & Gaze editing approach & \ref{cha:GazeAuthoring} \\
+& Gaze authoring workflow & \ref{cha:GazeAuthoring} \\
+& Nonverbal signals of conversational footing & \ref{cha:GazeFooting} \\
+\hdashline
+\multirow{10}{*}{Design} & Gaze shift model synthesizes plausible, communicatively accurate gaze shifts & \ref{cha:GazeShiftModel} \\
+& Gaze shifts with more torso reorientation are stronger attention cues & \ref{cha:GazeShiftModel} \\
+& Virtual agents can use gaze and spatial orientation to manage footing & \ref{cha:GazeFooting} \\
+& Nonverbal footing signals are effective only in immersive VR & \ref{cha:GazeFooting} \\
+& Gaze adaptation to stylized characters reduces animation artifacts & \ref{cha:StylizedGaze} \\
+& Stylized and performative gaze adaptations do not impair communicative accuracy or plausibility & \ref{cha:StylizedGaze} \\
+& Human actor's gaze can be reconstructed from their body motion and scene layout & \ref{cha:GazeAuthoring} \\
+& Gaze authoring approach allows novices to create and edit gaze animation with less effort & \ref{cha:GazeAuthoring} \\
+& Animation obtained from the gaze authoring approach looks plausible & \ref{cha:GazeAuthoring} \\
+& Edited gaze animation communicates a different attention distribution & \ref{cha:GazeAuthoring} \\
+\hline
+\end{tabularx}
+\caption{Research contributions from this dissertation.}
+\label{tab:Contributions}
+\end{table}
 
 In the remainder of this chapter, I discuss potential applications of the methods and findings contributed in this work, as well as their limitations and possible future research directions.
 

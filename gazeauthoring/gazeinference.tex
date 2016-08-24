@@ -183,9 +183,10 @@ Out of the total motion dataset, 2:30 minutes were annotated by both coders, all
 We used a similar approach to measure the accuracy of gaze instance inference. First, we identified pairs of overlapping gaze shifts in the inference output and ground-truth annotations. Next, we computed the \emph{sensitivity} of gaze instance inference, which is the percentage of ground-truth gaze shifts that have a match in the inference output. This measure is significant because it tells us how effective the inference method is at picking up key gaze shifts. Finally, for the pairs of overlapping gaze shifts, we computed Fisher's r as a measure of correlation of their start times ($t_s$) and end times ($t_e$), respectively. Table~\ref{tab:GazeShiftInferenceResults} shows the evaluation results for all nine scenarios.
 
 \begin{table}
+\small
 \centering
 \def\arraystretch{1.5}
-\begin{tabular}{|l|r|r|r|}
+\begin{tabular}{lrrr}
 \hline
 \textbf{Scene} & \textbf{Sensitivity} & $r(t_s)$ & $r(t_e)$ \\
 \hline

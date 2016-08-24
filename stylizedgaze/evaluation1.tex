@@ -8,9 +8,10 @@
 To evaluate the effectiveness of stylized gaze methods in reducing visual artifacts, we conducted measurements of artifact prevalence on a variety of characters using a set of objective metrics. These metrics reflect the amount of observable artifacts over the course of a gaze shift. Because each artifact is the product of a particular combination of the pose and kinematics of the eyes and the head, whether or not the artifact is present at a particular frame and its severity can be objectively quantified. Each metric computes the presence of an artifact at each frame and sums them over all the frames of the gaze shift to calculate the ``amount'' in which the artifact appears. Severity is determined by weighing the amount of an artifact by the cosine fall-off of the viewing angle, $\phi$ (i.e., the angle between the view direction and the character's gaze direction), thus giving less weight to frames where the character's eyes are less visible. The artifact amount is also weighed by the blink height at each frame to account for eye blinks that partially or fully conceal the artifacts. The aggregated amounts are then normalized by the duration of the gaze shift, providing us with quantities that we can compare across different characters and gaze shift configurations. Our metrics include cross-eyedness amount, $\tau_{CE}$, OMR-block amount, $\tau_{OMR}$, eye retraction and divergence amount, $\tau_{ERD}$, and stuck eye amount, $\tau_{SE}$.
 
 \begin{table}
+\small
 \centering
 \def\arraystretch{1.5}
-\begin{tabular}{|l|l|r|r|r|r|}
+\begin{tabular}{llrrrr}
 \hline
 \textbf{Character} & \textbf{Motion} & $\tau_{CE}$ & $\tau_{OMR}$ & $\tau_{ERD}$ & $\tau_{SE}$ \\
 \Xhline{2\arrayrulewidth}

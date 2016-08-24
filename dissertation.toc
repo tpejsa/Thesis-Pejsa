@@ -130,9 +130,9 @@
 \contentsline {subsubsection}{Results}{135}{section*.102}
 \contentsline {section}{\numberline {6.6}Discussion}{137}{section.6.6}
 \contentsline {chapter}{\chapternumberline {7}Discussion}{140}{chapter.7}
-\contentsline {section}{\numberline {7.1}Applications}{142}{section.7.1}
-\contentsline {section}{\numberline {7.2}Future Directions}{144}{section.7.2}
-\contentsline {subsection}{Supporting Expressive Gaze Behaviors}{144}{section*.103}
-\contentsline {subsection}{Nonverbal Behaviors in Multiparty Interactions}{145}{section*.104}
+\contentsline {section}{\numberline {7.1}Applications}{141}{section.7.1}
+\contentsline {section}{\numberline {7.2}Future Directions}{143}{section.7.2}
+\contentsline {subsection}{Supporting Expressive Gaze Behaviors}{143}{section*.103}
+\contentsline {subsection}{Nonverbal Behaviors in Multiparty Interactions}{144}{section*.104}
 \contentsline {subsection}{Scalable Authoring of Attending Behaviors}{146}{section*.105}
 \contentsline {chapter}{References}{148}{section*.107}

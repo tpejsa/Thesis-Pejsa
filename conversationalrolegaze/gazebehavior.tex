@@ -35,9 +35,10 @@ We implement gaze behaviors for signaling footing based on~\citet{mutlu2012conve
 In our implementation of footing-signalling gaze behaviors for virtual agents, we extrapolate the findings by~\citet{mutlu2012conversational} to support larger groups of addressees and bystanders. We define a discrete probability distribution over the set of gaze targets, which includes the faces and torsos of all the addressees and bystanders, as well as the environment. The distribution is characterized by a probability mass function $p_T = p(T, N_A, N_B)$ (Table~\ref{tab:GazeFootingSpatial}). The function $p_T$ specifies the probability of looking at the candidate target $T$ (addressee face or torso, bystander face or torso, or the environment) given the current configuration of user footing, specified by the number of addressees, $N_A$, and the number of bystanders, $N_B$. As the agent speaks or waits for a user to take the floor, it continually shifts its gaze between targets, which are chosen by drawing from $p_T$ (Table~\ref{tab:GazeFootingSpatial}). The temporal duration of each gaze fixation is then determined by drawing from a set of gamma distributions given in Table~\ref{tab:GazeFootingFixationLengths}, also derived from~\citet{mutlu2012conversational}.
 
 \begin{table}
+\small
 \centering
 \def\arraystretch{1.5}
-\begin{tabular}{|l|l|r|}
+\begin{tabular}{llr}
 \hline
 \textbf{Gaze Target} & \textbf{Footing Configuration} & \textbf{Gaze Probability} \\
 \hline
@@ -66,9 +67,10 @@ In our implementation of footing-signalling gaze behaviors for virtual agents, w
 \end{table}
 
 \begin{table}
+\small
 \centering
 \def\arraystretch{1.5}
-\begin{tabular}{|l|l|r|}
+\begin{tabular}{lrr}
 \hline
 \textbf{Gaze Target} & \textbf{Footing Configuration} & \textbf{Fixation Length} \\
 \hline
@@ -101,4 +103,4 @@ One question we have not touched upon is: what happens when the gaze target is i
 
 \subsection{Other Gaze Cues}
 
-The agent uses the gaze behaviors for footing while it is speaking or while waiting for a user to speak (i.e., after releasing the floor.) It also uses several other patterns that complement or override those. Firstly, when beginning a speech utterance, the agent always looks into the face of the addressee; if there are multiple addressees, the agent randomly chooses between them. Secondly, at the end of the utterance, the agent always looks back at the addressee's face as it releases the floor to them. Thirdly, while a user is speaking, the agent is always looking at their face, with frequent gaze aversions generated using the Eyes Alive model~\citep{lee2002eyes}.
+The agent uses the gaze behaviors for footing while it is speaking or while waiting for a user to speak (i.e., after releasing the floor.) It also uses several other patterns that complement or override those. Firstly, when beginning a speech utterance, the agent always looks into the face of the addressee; if there are multiple addressees, the agent randomly chooses between them. Secondly, at the end of the utterance, the agent always looks back at the addressee's face as it releases the floor to them. Thirdly, while a user is speaking, the agent is always looking at their face, with frequent gaze aversions generated using the Eyes Alive model~\citep{lee2002eyes}. 
