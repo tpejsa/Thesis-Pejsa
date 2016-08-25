@@ -3,8 +3,8 @@
 \contentsline {chapter}{List of Figures}{vii}{section*.8}
 \contentsline {chapter}{Abstract}{xii}{chapter*.9}
 \contentsline {chapter}{\chapternumberline {1}Introduction}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}Methodology}{5}{section.1.1}
-\contentsline {section}{\numberline {1.2}Contributions}{7}{section.1.2}
+\contentsline {section}{\numberline {1.1}Methodology}{6}{section.1.1}
+\contentsline {section}{\numberline {1.2}Contributions}{8}{section.1.2}
 \contentsline {chapter}{\chapternumberline {2}Related Work}{13}{chapter.2}
 \contentsline {section}{\numberline {2.1}Gaze in Human Communication}{13}{section.2.1}
 \contentsline {subsection}{Human-Human Interactions}{13}{section*.10}
