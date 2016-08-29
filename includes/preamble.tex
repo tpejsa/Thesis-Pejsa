@@ -51,6 +51,7 @@
 \usepackage{amsthm}
 %\usepackage{theorem}
 \usepackage{hyperref}
+\hypersetup{final=true}
 \usepackage{arydshln}
 \usepackage{multirow}
 \usepackage{makecell}
@@ -70,9 +71,11 @@
 \hypersetup{pdfborder = 0 0 0}
 
 %% You want microtype.
-\IfFileExists{microtype.sty}{%
-\usepackage[protrusion=true,expansion=true]{microtype}%
-}{}
+%\IfFileExists{microtype.sty}{%
+%\usepackage[protrusion=true,expansion=true]{microtype}%
+%}{}
+%\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
+\usepackage{microtype}
 
 %\pagestyle{thesisdraft}
 
