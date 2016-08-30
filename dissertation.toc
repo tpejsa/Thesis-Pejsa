@@ -38,7 +38,7 @@
 \contentsline {subsubsection}{Computing Target Directions}{43}{section*.30}
 \contentsline {subsubsection}{The Animation Loop}{45}{section*.31}
 \contentsline {subsection}{Secondary Gaze Movements}{47}{section*.32}
-\contentsline {section}{\numberline {3.3}Evaluation: Gaze Accuracy}{48}{section.3.3}
+\contentsline {section}{\numberline {3.3}Evaluation: Eye-Head Shifts}{48}{section.3.3}
 \contentsline {subsection}{Setup and Task}{49}{section*.33}
 \contentsline {subsection}{Study Design}{50}{section*.34}
 \contentsline {subsection}{Procedure}{51}{section*.35}
@@ -46,7 +46,7 @@
 \contentsline {subsection}{Measures}{52}{section*.37}
 \contentsline {subsection}{Results}{52}{section*.38}
 \contentsline {subsection}{Discussion}{55}{section*.39}
-\contentsline {section}{\numberline {3.4}Evaluation: Body Orientation}{56}{section.3.4}
+\contentsline {section}{\numberline {3.4}Evaluation: Upper-Body Shifts}{56}{section.3.4}
 \contentsline {subsection}{Hypotheses}{56}{section*.40}
 \contentsline {subsection}{Participants}{57}{section*.41}
 \contentsline {subsection}{Study Design}{57}{section*.42}
@@ -60,22 +60,22 @@
 \contentsline {section}{\numberline {4.2}Conversational Gaze Behaviors}{65}{section.4.2}
 \contentsline {subsection}{Spatial Orientation Signals}{65}{section*.47}
 \contentsline {subsection}{Eye Gaze Signals}{67}{section*.48}
-\contentsline {subsubsection}{Environment-Directed Gaze}{70}{section*.49}
+\contentsline {subsubsection}{Environment-Directed Gaze}{69}{section*.49}
 \contentsline {subsubsection}{Other Gaze Signals}{70}{section*.50}
-\contentsline {section}{\numberline {4.3}Experiment}{70}{section.4.3}
+\contentsline {section}{\numberline {4.3}Experiment}{71}{section.4.3}
 \contentsline {subsection}{Hypotheses}{71}{section*.51}
-\contentsline {subsection}{Design}{72}{section*.52}
-\contentsline {subsection}{Task}{74}{section*.53}
+\contentsline {subsection}{Design}{73}{section*.52}
+\contentsline {subsection}{Task}{75}{section*.53}
 \contentsline {subsubsection}{Setup}{76}{section*.54}
 \contentsline {subsubsection}{Implementation}{76}{section*.55}
-\contentsline {subsection}{Participants}{76}{section*.56}
+\contentsline {subsection}{Participants}{77}{section*.56}
 \contentsline {subsection}{Procedure}{77}{section*.57}
 \contentsline {subsection}{Measures}{77}{section*.58}
 \contentsline {subsection}{Results}{78}{section*.59}
-\contentsline {subsubsection}{Behavioral}{80}{section*.60}
+\contentsline {subsubsection}{Behavioral}{79}{section*.60}
 \contentsline {subsubsection}{Subjective}{81}{section*.61}
 \contentsline {subsection}{Discussion}{82}{section*.62}
-\contentsline {section}{\numberline {4.4}Discussion}{83}{section.4.4}
+\contentsline {section}{\numberline {4.4}Discussion}{84}{section.4.4}
 \contentsline {chapter}{\chapternumberline {5}Stylized and Performative Gaze}{85}{chapter.5}
 \contentsline {section}{\numberline {5.1}Introduction}{85}{section.5.1}
 \contentsline {section}{\numberline {5.2}Artifacts on Stylized Characters}{87}{section.5.2}
