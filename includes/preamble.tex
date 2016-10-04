@@ -56,6 +56,11 @@
 \usepackage{multirow}
 \usepackage{makecell}
 
+% Support left-aligned text in fixed-width table cells
+\usepackage{array}
+\usepackage{ragged2e}
+\newcolumntype{P}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
+
 \IfFileExists{mathpartir.sty}{%
 \usepackage{mathpartir}%
 }{}
