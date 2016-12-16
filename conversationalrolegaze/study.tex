@@ -1,9 +1,9 @@
 To evaluate the models introduced in the previous section we conducted a study with human participants.
 The study aimed to answer two research questions: ``Can a virtual agent use our  models to shape the footing of participants in multiparty interactions in virtual reality?'' and ``Does the display type (e.g. VR or on-screen) influence the effects?''
 
-In our study, human participants engaged in short, 10-minute conversations with a virtual agent and a simulated, avatar-embodied confederate. The virtual agent displayed gaze behaviors and body orientation that would either include the participant as an addressee or exclude them as a bystander. The goal of this manipulation was to show that participants would conform to the conversational role signaled by our behavior models---e.g., when assigned the role of bystanders, participants would converse less with the agent.
+In our study, human participants engaged in short, 10-minute conversations with a virtual agent and a simulated, avatar-embodied confederate. The virtual agent displayed gaze behaviors and body orientation that would either include the participant as an addressee or exclude them as a bystander. The goal of this manipulation was to show that participants would conform to the conversational role signaled by the agent using our behavior models---e.g., when assigned the role of bystanders, participants would converse less with the agent.
 
-While our virtual agent models are independent of the display type used, we expect that the effects of the models will be stronger when the interaction is experiences in VR. A VR application using a head-mounted display provides different affordances than a desktop display, such as a wide field of view and natural control of viewpoint, which may strengthen the perception of social cues. Therefore, we expect people to be more sensitive to behaviors displayed by agents within an immersive VR environment.
+While our models are independent of the display type used, we expect that the effects of the models will be stronger when the interaction is experiences in VR. A VR application using a head-mounted display provides improved affordances over a desktop display, such as a wide field of view and natural control of viewpoint, which may strengthen the perception of social cues. Therefore, we expect people to be more sensitive to behaviors displayed by agents within an immersive VR environment.
 To test this, our experiment manipulates display type to compare a VR headset (Oculus Rift CV1) with a desktop display.
 
 \subsection{Hypotheses}
@@ -26,7 +26,7 @@ The agent's footing cues will have a stronger effect on the participants' conver
 
 The agent's footing cues will have a stronger effect on the participants' subjective perceptions of the agent and their feelings of closeness and groupness (Hypothesis 2) in the VR setting than when using a 2D display.
 
-Hypotheses 3-4 are based on the premise that the increased affordances of VR will lead to a heightened awareness of the agent's nonverbal signals, relative to presentation on a traditional display. Virtual reality provides stereo depth cues, a wide field of view, and natural control over viewpoint. All of these may augment participants' perceptions of the agent and its behaviors.
+Hypotheses 3-4 are based on the premise that the increased affordances of VR will lead to a stronger sense of the agent's social presence and heightened awareness of their nonverbal signals, relative to presentation on a traditional display. Virtual reality provides stereo depth cues, a wide field of view, and natural control over viewpoint. All of these may augment participants' perceptions of the agent and its behaviors.
 
 \subsection{Study Design}
 
@@ -53,7 +53,7 @@ The other independent variable, task setting, had the following levels:
 \item \emph{VR} -- The participant wore a VR headset (Oculus Rift CV1). They saw the scene at the resolution of $1080 \times 1200$ per eye, with a 110$^\circ$ field of view. Built-in head orientation tracking and the external positional tracker allowed the participant to control the viewpoint by moving their head.
 \end{enumerate}
 
-The two task setting conditions were designed to approximate the standard or expected usage of interactive, virtual agent systems. The \emph{2D display} condition approximated the experience of a 3D, first-person game or virtual world on a personal computer with a single display, which represents the state of the art for a majority of users. The FOV value of 50$^\circ$ is fairly standard in 3D applications; distance magnification and perspective distortion effects become noticeable at values above 60$^\circ$. The use of the Oculus Rift in the \emph{VR} condition afforded a much higher field of view and more natural control over the viewpoint, allowing the participant to easily see both the agent and the confederate simultaneously, as well as shift their gaze from one to the other by simply moving their head. The screenshots in Figure~\ref{fig:GazeFootingConditions} are both from the \emph{2D display} condition.
+The two task setting conditions were designed to approximate the standard or expected usage of interactive, virtual agent systems. The \emph{2D display} condition approximated the experience of a 3D, first-person game or virtual world on a personal computer with a single display, which represents the state of the art for the majority of users. The FOV value of 50$^\circ$ is fairly standard in 3D applications; distance magnification and perspective distortion effects become noticeable at values above 60$^\circ$. The use of the Oculus Rift in the \emph{VR} condition afforded a much higher field of view and more natural viewpoint control, allowing the participant to easily see both the agent and the confederate simultaneously, as well as shift their gaze from one to the other by simply moving their head. The screenshots in Figure~\ref{fig:GazeFootingConditions} are both from the \emph{2D display} condition.
 
 Since the study had a within-participants factor (\emph{task setting}), we implemented two versions of the task to reduce transfer effects. The participants were assigned to conditions in a stratified order, counterbalanced with respect to task setting (\emph{2D display} or \emph{VR}) and task version (\emph{Task 1} or \emph{Task 2}).
 
@@ -70,7 +70,7 @@ The study task was a three-party interaction in a virtual room. The interaction 
 
 The conversational partners were the agent, the participant, and a ``simulated confederate''---a human-voiced agent which produced prerecorded utterances, but the participants were led to believe it was a real human in another room. At the start of the task, the participant found themselves standing at the room's entrance with a view of the agent and confederate on the other side of the room (Figure~\ref{fig:GazeFootingTask}, left); the agent and confederate faced each other in a vis-a-vis formation. The participant was prompted to click a button (either on the mouse or the Oculus Remote) to initiate the interaction; upon doing so, the camera automatically approached the group. Depending on the agent behavior condition, the agent either briefly glanced toward the participant and continued facing the confederate (\emph{exclusive} agent behavior) or reoriented herself toward the participant (\emph{inclusive} agent behavior).
 
-After introducing herself and greeting the partners, the agent would begin asking casual questions about their life experiences and interests. Some questions were designed to elicit short, one-sentence responses (e.g., ``What is your favorite movie?''), while others elicited longer, more open-ended responses (e.g., ``What is your favorite movie about?'') Most questions were implicitly addressed at both the participant and confederate, and they both had a choice in answering them. We expected that the participant was more likely to take the conversational floor and answer the question if the agent demonstrated more inclusive nonverbal behaviors.
+After introducing herself and greeting the partners, the agent began asking casual questions about the partners' life experiences and interests. Some questions were designed to elicit short, one-sentence responses (e.g., ``What is your favorite movie?''), while others elicited longer, more open-ended responses (e.g., ``What is your favorite movie about?'') Most questions were implicitly addressed at both the participant and confederate, who both had a choice in answering them. We expected that the participant was more likely to take the conversational floor and answer the question if the agent demonstrated inclusive nonverbal behaviors.
 
 At the end of the agent's turn, the system randomly decided if the confederate should answer the current question or not. If yes, the confederate took the floor within about 0.75 $s$ and gave a prerecorded response to the question. If not, the system waited 3.4 $s$ for someone to speak out; if no one did, either the confederate took the floor and answered, or the agent proceeded with the next question. The pause values between turns were derived from measurements of human speech in prior work and padded for possible speech recognition lag. According to Weilhammer~\citep{weilhammer2003durational}, the mean pause between turns is about 380 $ms$ in spontaneous American-English discourse, whereas silences longer than 3 $s$ are experienced as uncomfortable~\citep{mclaughlin1982awkward}.
 
@@ -80,7 +80,7 @@ The physical setup of the task is shown in Figure~\ref{fig:GazeFootingTask}, rig
 
 \subsubsection{Implementation}
 
-The task was implemented in Unity game engine and utilized the embodied dialog system described in the previous section. The task logic and measurements were implemented in C\# scripts. The confederate's lip movements were animated using Oculus Lip Sync. The agent and confederate character models were imported from DAZ\footnote{DAZ Productions, http://www.daz3d.com/}. Their visual design is deliberately stylized in order to reduce uncanny valley effects~\citep{mori2012uncanny}, though their proportions are sufficiently realistic that gaze motion adaptation (using methods from Chapter~\ref{cha:StylizedGaze}) was unnecessary. Both models had a looping, idle body animation applied to enhance the naturalness of their behavior.
+The task was implemented in Unity game engine and utilized the embodied dialog system described in the previous section. The task logic and measurements were implemented in C\# scripts. The confederate's lip movements were animated using Oculus Lip Sync. The agent and confederate character models were imported from DAZ\footnote{DAZ Productions, http://www.daz3d.com/}. Their visual design was deliberately stylized in order to reduce uncanny valley effects~\citep{mori2012uncanny}, though their proportions were sufficiently realistic that gaze motion adaptation (using methods from Chapter~\ref{cha:StylizedGaze}) was unnecessary. Both models had a looping, idle body animation applied to enhance the naturalness of their behavior.
 
 \subsection{Participants}
 
@@ -92,7 +92,7 @@ We conducted the experiment in a study room with no outside distraction. The par
 
 \subsection{Measures}
 
-The experiment involved two behavioral and several subjective measures. The behavioral measures were designed to measure the participants' level of participation in the interaction, in order to test Hypothesis 1. They were the following:
+The experiment involved two behavioral and several subjective measures. The behavioral measures were designed to measure the participants' level of participation in the interaction, in order to test hypotheses 1 and 3. They were the following:
 
 \begin{enumerate}
 \item \emph{Number of speaking turns} -- Total number of speaking turns taken by the participant over the course of the interaction.
@@ -113,7 +113,7 @@ The questionnaire also included a check for the agent behavior manipulation, imp
 
 \subsection{Results}
 
-Having collected our data, we first performed a one-way analysis of variance (ANOVA) on the manipulation check. We found a significant effect of the agent behavior manipulation on the check, $F(1, 61) = 5.743, p = .0196$.
+Having collected our data, we first performed a one-way analysis of variance (ANOVA) on the manipulation check scale. We found a significant effect of agent behavior on the manipulation check, $F(1, 61) = 5.743, p = .0196$.
 
 \subsubsection{Behavioral Measures}
 
@@ -124,7 +124,7 @@ Having collected our data, we first performed a one-way analysis of variance (AN
 \label{fig:GazeFootingResultsBehavioral}
 \end{figure}
 
-Next, we analyzed our behavioral measures with a two-way, mixed-design ANOVA. We found a marginal main effect of agent behavior on the \emph{number of speaking turns} ($F(1, 30) = 3.757, p = .062$) and no effect of agent behavior on the \emph{total speaking time} ($F(1, 30) = 1.159, p = .290$). These findings provide only partial support for Hypothesis 1.
+Next, we analyzed our behavioral measures with a two-way, mixed-design ANOVA. We found a marginal main effect of agent behavior on the \emph{number of speaking turns} ($F(1, 30) = 3.757, p = .062$) and no effect of agent behavior on the \emph{total speaking time} ($F(1, 30) = 1.159, p = .290$). These findings provide partial support for Hypothesis 1.
 
 We found no interaction between agent behavior and task setting on the \emph{number of speaking turns} ($F(1, 30) = 2.217, p = .147$). However, we did find a marginal interaction between agent behavior and task setting on the \emph{total speaking time} ($F(1, 30) = 3.637, p = .066$). Furthermore, we found a simple effect of agent behavior on the number of speaking turns in the \emph{VR} setting; the number of turns taken in the \emph{inclusive} condition was significantly higher than in the \emph{exclusive} condition (5.7 versus 8.4), $F(1, 55) = 5.970, p = .0178)$. No such effect of the agent behavior manipulation was found in the \emph{2D display} setting, $F(1, 55) = 0.465, p = .498$. An equivalent set of comparisons for the speaking time measure found a marginal effect of agent behavior manipulation in the \emph{VR} setting ($F(1, 59) = 3.472, p = .0387$). No such effect of agent behavior was found in the \emph{2D display} setting ($F(1, 59) = 0.287, p = .594$). All the pairwise comparisons were performed at a Bonferroni-corrected alpha level of $.025$. These findings provide support for Hypothesis 3.
 
@@ -132,7 +132,7 @@ Additionally, we confirmed that \emph{task version} had no significant effect on
 
 \subsubsection{Subjective Measures}
 
-To analyze the subjective measures, we performed a two-way, mixed-design ANOVA. We found no main effects of agent behavior on any of our subjective measures: \emph{likeability} ($F(1, 30) = 0.363, p = .551$), \emph{attractiveness} ($F(1, 30) = 1.719, p = .200$), \emph{closeness} ($F(1, 30) = 0.606, p = .443$), or \emph{groupness} ($F(1, 30) = 0.140, p = .711$). We also found no significant interactions of agent behavior and task setting on any of the subjective measures: \emph{likeability} ($F(1, 30) = 1.233, p = .276$), \emph{attractiveness} ($F(1, 30) = 0.417, p = .243$), \emph{closeness} ($F(1, 30) = 0.092, p = .764$), \emph{groupness} $(F(1, 30) = 0.086, p = .771$). Hypotheses 2 and 4 are not supported by these results.
+To analyze the subjective measures, we performed a two-way, mixed-design ANOVA. We found no main effects of agent behavior on any of our subjective measures: \emph{likeability} ($F(1, 30) = 0.363, p = .551$), \emph{attractiveness} ($F(1, 30) = 1.719, p = .200$), \emph{closeness} ($F(1, 30) = 0.606, p = .443$), or \emph{groupness} ($F(1, 30) = 0.140, p = .711$). We also found no significant interactions of agent behavior and task setting on any of the subjective measures: \emph{likeability} ($F(1, 30) = 1.233, p = .276$), \emph{attractiveness} ($F(1, 30) = 0.417, p = .243$), \emph{closeness} ($F(1, 30) = 0.092, p = .764$), \emph{groupness} $(F(1, 30) = 0.086, p = .771$). We conclude that hypotheses 2 and 4 are not supported by these results.
 
 \begin{figure}
 \centering

@@ -5,7 +5,7 @@ Gaze inference begins with a signal analysis of the body motion to detect indivi
 \subsection{Gaze Instance Inference}
 \label{sec:GazeTimingInference}
 
-Human gaze shifts follow a particular kinematic pattern. The eyes, head, and torso accelerate toward the gaze target, reach their peak velocities at the midpoint of the gaze shift, and decelerate as they align with the target, at which point the fixation begins. We detect gaze shifts by searching for this pattern in the body motion using a three-step approach. First, we search for clusters of maxima in angular acceleration signals of the head and torso joints, which correspond to significant gaze events (gaze shift beginnings and ends).~\citet{coleman2008staggered} used a similar method for key pose extraction. Each pair of adjacent gaze events defines the boundaries of a motion interval, which can be either a gaze shift or a fixation. In the second step, we classify the motion intervals into gaze shifts and fixations. Third, for each adjacent gaze shift-fixation pair, we generate a gaze instance.
+Human gaze shifts follow a particular kinematic pattern. The eyes, head, and torso accelerate toward the gaze target, reach their peak velocities at the midpoint of the gaze shift, and decelerate as they align with the target, at which point the fixation begins. We detect gaze shifts by searching for occurrences of this pattern in the body motion using a three-step approach. First, we search for clusters of maxima in angular acceleration signals of the head and torso joints, which correspond to significant gaze events (gaze shift beginnings and ends).~\citet{coleman2008staggered} used a similar method for key pose extraction. Each pair of adjacent gaze events defines the boundaries of a motion interval, which can be either a gaze shift or a fixation. In the second step, we classify the motion intervals into gaze shifts and fixations. Third, for each adjacent gaze shift-fixation pair, we generate a gaze instance.
 
 \begin{figure}
 \centering
@@ -30,7 +30,7 @@ w_j(f) = \frac{1}{1 + l_j}
 %
 where $l_j$ is the distance between joint $j$ and the eyes, measured as the cumulative length of the segments between them.
 
-Local maxima in $p_E$ correspond to the beginnings and endings of gaze shifts. Since acceleration signals are likely to be noisy and contain a large number of spurious maxima, a bilateral filter is applied to $p_E$ to smooth out the spurious maxima while preserving those that are kinematically significant. We set the filter's range parameter $\sigma_r$ to 0.5 and spatial parameter $\sigma_s$ to 3. The filtered probability signal is then searched for local maxima. Each pair of adjacent maxima defines a motion interval $I_k = (f_{s,k}, f_{e,k})$, which could either be a gaze shift or a fixation.
+Local maxima in $p_E$ correspond to the beginnings and endings of gaze shifts. Since acceleration signals are likely to be noisy and contain a large number of spurious maxima, a bilateral filter is applied to $p_E$ to smooth out the spurious maxima while preserving those that are kinematically significant. We set the filter's range parameter $\sigma_r$ to 0.5 and spatial parameter $\sigma_s$ to 3. We then search for local maxima in the filtered probability signal. Each pair of adjacent maxima defines a motion interval $I_k = (f_{s,k}, f_{e,k})$, which could either be a gaze shift or a fixation.
 
 \subsubsection{Motion Interval Classification}
 
@@ -96,7 +96,7 @@ Figure~\ref{fig:GazeTargetInference} shows an example scene view with the associ
 
 The computation of the directional term, $p_d(\mathbf{x})$, is based on the following idea. When the character shifts its gaze, its head traces a path in the projection space beginning at $\mathbf{x}_s$ and ending at $\mathbf{x}_x$ (Figure~\ref{fig:GazeTargetInference}-2). If the character always gazed straight on, then $p_d(\mathbf{x})$ would be highest at $\mathbf{x}_x$. However, the character is as likely to be looking at something out of the corner of the eye, so the eyes may ``overshoot'' $\mathbf{x}_x$ and line up with a point further along the movement path. Therefore, from the path $(\mathbf{x}_s, \mathbf{x}_x)$ we extrapolate a path extending to the point $\mathbf{x}_{\mathrm{OMR}}$, which lies on the edge of the eyes' motor range (OMR), beyond which the eyes cannot move (Figure~\ref{fig:GazeTargetInference}b). $p_d(\mathbf{x})$ has the maximum value of 1 along the path $(\mathbf{x}_x, \mathbf{x}_{\mathrm{OMR}})$ and linearly falls off to zero with distance from the path.
 
-We compute the probability fall-off as follows. Let $\mathbf{v}$ be the vector pointing from the eye centroid to the current point $\mathbf{x}$ in the projection space. Let $\mathbf{x}'$ be the projection of $\mathbf{x}$ onto the line $(\mathbf{x}_{\mathrm{OMR}}$ and $\mathbf{v}'$ the vector from the eye centroid to $\mathbf{x}'$. We denote $\phi$ the angle between vectors $\mathbf{v}$ and $\mathbf{v}'$, and we compute the probability at $\mathbf{x}$:
+We compute the probability fall-off as follows. Let $\mathbf{v}$ be the vector pointing from the eye centroid to the current point $\mathbf{x}$ in the projection space. Let $\mathbf{x}'$ be the projection of $\mathbf{x}$ onto the line $(\mathbf{x}_{\mathrm{OMR}}$ and $\mathbf{v}'$ the vector from the eye centroid to $\mathbf{x}'$. The probability at $\mathbf{x}$ is computed as:
 %
 \begin{align} \label{eq:GazeDirectionProbability}
 p_d(\mathbf{x}) =
@@ -106,7 +106,7 @@ p_d(\mathbf{x}) =
 \end{cases}
 \end{align}
 %
-where $OMR$ is between $45\deg$ and $55\deg$ for humans.
+where $\phi$ is the angle between vectors $\mathbf{v}$ and $\mathbf{v}'$. $OMR$ value is between $45\deg$ and $55\deg$ for humans.
 
 Note that we do not set $p_d$ to zero everywhere outside the OMR region. Due to variability in human OMR and differences between the capture environment and the virtual scene, the gaze target may actually lie outside the character's OMR. By allowing non-zero probability beyond that range, we allow our algorithm to pick up the gaze target even in such cases.
 

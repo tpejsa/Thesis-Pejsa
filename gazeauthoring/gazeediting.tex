@@ -26,11 +26,11 @@ Gaze targets are implemented as tagged, dummy objects parented to scene objects 
 
 Our gaze authoring approach can produce believable results while requiring less labor and skill than traditional methods. An experienced animator must set many keyframes to add eye movements to a body motion, while our system can add an equivalent amount of animation automatically. Manually adding a new gaze shift to an existing gaze animation requires setting multiple keyframes on each of the eye, head, and torso joints, whereas our tool can accomplish the same result in a single operation. Much of the challenge in producing high-quality animation comes from getting the timing right---each keyframe needs to be placed with great care. Our tool greatly reduces this burden---the gaze shift model implements the kinematics of human gaze and automatically computes relative timings of eye, head, and torso movements that result in natural motion.
 
-\begin{figure}
+\begin{sidewaysfigure}
 \centering
-\includegraphics[width=1\textwidth]{gazeauthoring/Figures/Results.pdf}
+\includegraphics[width=1\textwidth]{gazeauthoring/Figures/Results2.pdf}
 \caption{Example motions generated using our system.}
 \label{fig:GazeEditResults}
-\end{figure}
+\end{sidewaysfigure}
 
 Figure~\ref{fig:GazeEditResults} shows several examples of gaze animation created using our approach, excerpted from the supplemental video. Each example consists of two rows of images showing two versions of the same scene. Example 1 (WalkCones) demonstrates the effects of adding inferred eye movements to a walking motion. The eye movements make the character more lifelike and anticipate changes in trajectory. Example 2 (DrinkSoda) shows a story edit where a new character is introduced and the other two characters are made to gaze at her. In Example 3 (MakeSandwich), the character making a sandwich is made to look at the camera after adding each ingredient to increase the viewer's engagement. In Example 4 (WaitForBus), we prevented the character from checking his watch by removing the corresponding gaze instance and constraining his arm. Examples 5 and 6 show how we can use gaze edits to change the character's personality. Example 5 (ChatWithFriend) contrasts two versions of a first-person conversational scene, one where the character unsettlingly stares at the camera and another where it looks away uncomfortably. In Example 6 (HandShake), we made the character appear standoffish by having him look away during the handshake. 

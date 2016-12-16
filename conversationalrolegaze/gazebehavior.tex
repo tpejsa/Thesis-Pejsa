@@ -2,13 +2,13 @@ People use a number of nonverbal cues to shape the footing of conversational par
 In this section, I introduce computational models for synthesis of these behaviors on virtual agents.
 The body reorientation model performs shifts of the agent's body orientation toward new addressees joining the interaction in order to reconfigure the conversational formation.
 The gaze model performs shifts of the agent's eye gaze among the core participants and bystanders according to probability distributions derived from previous work~\citep{mutlu2012conversational}.
-The movements that comprise these behaviors---body orientation shifts and eye gaze shifts---are kinematically similar, as they both involve coordinated reorienting of the eyes, head, and (in some cases) body toward targets in the environment. We synthesize both types of movements using the gaze shift model from Chapter~\ref{cha:GazeShiftModel}. This section concludes with an overview of the models' prototype implementation in an embodied, multiparty dialog system.
+The movements that comprise these behaviors---body orientation shifts and eye gaze shifts---are kinematically similar, as they both involve coordinated reorienting of the eyes, head, and (potentially) body toward targets in the environment. We synthesize both types of movements using the gaze shift model from Chapter~\ref{cha:GazeShiftModel}. This section concludes with an overview of the models' prototype implementation in an embodied, multiparty dialog system.
 
 \subsection{Body-Reorientation Model}
 
 When two people interact, they typically face each other directly, creating a so-called vis-a-vis arrangement, though they may also stand at a 90$^\circ$ angle, in an L-shape formation~\citep{kendon1990conducting}. When there are more than two participants in a conversation, they generally stand in a circular formation. \citet{kendon1990conducting} has coined the term ``F-formation'' to refer to these spatial arrangements of interacting participants. The F-formation serves as a footing cue---speakers and addressees are a part of it, while bystanders are not.
 
-In order to correctly establish conversational footing, a virtual agent must be able to maintain an F-formation with other participants. When a new addressee approaches the agent, the latter must turn toward the newcomer to reconfigure the F-formation. Likewise, when a current participant leaves, the agent may need to reorient itself toward the remaining participants. Here, we describe a model for synthesis of body orientation shifts that achieve correct F-formation reconfiguration.
+In order to correctly establish conversational footing, a virtual agent must be able to maintain an F-formation with other participants. When a new addressee approaches the agent, the latter must turn toward the newcomer to reconfigure the F-formation. Likewise, when a current participant leaves, the agent may need to reorient itself toward the remaining participants. Here, we describe a model for synthesis of body orientation shifts that reconfigure the F-formation.
 
 \begin{figure}
 \centering
@@ -17,7 +17,7 @@ In order to correctly establish conversational footing, a virtual agent must be 
 \label{fig:FTorsoAlign}
 \end{figure}
 
-We use our gaze shift model (Chapter~\ref{cha:GazeShiftModel}) to synthesize the agent's body orientation shifts. When the first participant approaches the agent, the agent performs a gaze shift toward the participant with the head, torso, and whole-body alignment parameters all set to 1 ($\alpha_H = \alpha_T = \alpha_B = 1$). This results in the agent facing the participant head-on. If participants are already present in the interaction, the agent must perform a gaze shift toward the new participant that evenly distributes its body orientation among all the participants. We set $\alpha_H = 1$ and $\alpha_B = 1$ as before, whereas $\alpha_T$ must be set such that the agent ends up oriented toward the midpoint between the leftmost and rightmost participant. The procedure for computing $\alpha_T$ is as follows (Figure~\ref{fig:FTorsoAlign}). Let us define the following direction vectors:
+We use our gaze shift model (Chapter~\ref{cha:GazeShiftModel}) to synthesize the agent's body orientation shifts. When the first participant approaches the agent, the latter performs a gaze shift toward the participant with the head, torso, and whole-body alignment parameters all set to 1 ($\alpha_H = \alpha_T = \alpha_B = 1$). This results in the agent facing the participant head-on. If participants are already present in the interaction, the agent must perform a gaze shift toward the new participant that evenly distributes its body orientation among all the participants. We set $\alpha_H = 1$ and $\alpha_B = 1$ as before, whereas $\alpha_T$ must be set such that the agent ends up oriented toward the midpoint between the leftmost and rightmost participant. The procedure for computing $\alpha_T$ is as follows (Figure~\ref{fig:FTorsoAlign}). Let us define the following direction vectors:
 
 \begin{itemize}
 \item $\mathbf{v}_S$ -- Current torso facing direction of the agent.
@@ -27,7 +27,7 @@ We use our gaze shift model (Chapter~\ref{cha:GazeShiftModel}) to synthesize the
 \item $\mathbf{v}_R$ -- Direction vector from the agent to the rightmost user.
 \end{itemize}
 
-All direction vectors are projected onto the horizontal plane. The agent must realign its body such that its torso facing direction ends up the following: $\mathbf{v}_T = \mathop{slerp}(\mathbf{v}_L, \mathbf{v}_R, 0.5)$. The function $\mathop{slerp}$ denotes interpolation between two direction vectors. It can be computed by rotating $\mathbf{v}_L$ toward $\mathbf{v}_R$ by $0.5 \phi_{LR}$, where $\phi_{LR}$ is the angle between the direction vectors. The torso alignment $\alpha_T$ needed to achieve the facing direction $\mathbf{v}_T$ is:
+All direction vectors are projected onto the horizontal plane. The agent must realign its body such that its torso facing direction ends up being the following: $\mathbf{v}_T = \mathop{slerp}(\mathbf{v}_L, \mathbf{v}_R, 0.5)$. The function $\mathop{slerp}$ denotes interpolation between two direction vectors. It can be computed by rotating $\mathbf{v}_L$ toward $\mathbf{v}_R$ by $0.5 \phi_{LR}$, where $\phi_{LR}$ is the angle between the direction vectors. The torso alignment $\alpha_T$ needed to achieve the facing direction $\mathbf{v}_T$ is:
 %
 \begin{align} \label{eq:FTorsoAlign}
 \alpha_T = \frac{\angle(\mathbf{v}_S, \mathbf{v}_T)}{\angle(\mathbf{v}_S, \mathbf{v}_\mathrm{full})}
@@ -98,7 +98,7 @@ Bystander \emph{torso} & $N_B \geq 1$ & $\mathop{Gamma}(1.76, 0.57)$ \\
 & $N_A \geq 2$ & $\mathop{Gamma}(2.23, 0.41)$ \\
 \hline
 \end{tabular}
-\caption{Agent's gaze fixation lengths (in seconds), expressed as gamma distributions specifying the length of fixation of a target in the given configuration of conversational roles.}
+\caption{Agent's gaze fixation lengths (in seconds), expressed as gamma distributions specifying the length of a fixation of a target in the given configuration of conversational roles.}
 \label{tab:GazeFootingFixationLengths}
 \end{table}
 
@@ -110,7 +110,7 @@ It is also possible that by drawing from the distribution we determine that the 
 
 \subsubsection{Supporting Additional Participants}
 
-\citet{mutlu2012conversational} only provide data for interactions with two addressees or one addressee and one bystander. However, we want to design a more robust gaze model that supports interactions with larger groups of participants. We extrapolate the original distributions~\citep{mutlu2012conversational} to configurations with 3+ addressees and 2+ bystanders. Our extrapolated distribution is based on the idea that the total probability of the agent looking at addressees is a constant 70\%. This probability is then equally divided among individual addressees, so if $N_A = 3$, the probability of looking at any one addressee is 23\%. The latter probability is the sum of probabilities of looking at the addressee's face (18\%) versus their torso (5\%). It implicitly follows from Table~\ref{tab:GazeFootingSpatial} that the ratio of face and torso probabilities is also constant. By the same token, we extrapolate the probabilities of looking at bystanders. If we have 2+ bystanders, the total probability of looking at them is a constant 13\%, which gets equally divided among them.
+\citet{mutlu2012conversational} only provide data for interactions with two addressees or one addressee and one bystander. However, we want to design a more robust gaze model that supports interactions with larger groups of participants. We extrapolate the original distributions~\citep{mutlu2012conversational} to configurations with 3+ addressees and 2+ bystanders. Our extrapolated distribution is based on the idea that the total probability of the agent looking at addressees is a constant 70\%. This probability is then equally divided among individual addressees, so if $N_A = 3$, the probability of looking at any one addressee is 23\%. The latter probability is the sum of probabilities of looking at the addressee's face (18\%) versus their torso (5\%). It implicitly follows from Table~\ref{tab:GazeFootingSpatial} that the ratio of face and torso probabilities is also constant. By the same token, we extrapolate the probabilities of looking at bystanders. If we have 2+ bystanders, the total probability of looking at them is a constant 13\%, which gets divided equally among them.
 
 We believe that our gaze model generalizes well to small groups of participants with arbitrary footing configurations. In larger groups, it is likely that the total proportion of gaze toward addressees increases, while gaze toward the environment and bystanders may decay toward zero. Additional data collection is required to build a model for large-scale multiparty interactions.
 
